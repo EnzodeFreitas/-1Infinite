@@ -24,13 +24,17 @@
 
 header 
 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Opacidade */
+    background-color: transparent;
 }
 
 header nav
 {
-    background-color: transparent;
     max-width: 1400px;
     margin: 0 auto; /* Centraliza dentro do header */
     padding: 0 2rem; /* 0 para cima e embaixo e 2rem aos lados */
@@ -196,6 +200,7 @@ body
     align-items: center;
     justify-content: center;
     h1 {
+        display: flex; /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
         span {
             color: #fff;
             font-size: 6rem;

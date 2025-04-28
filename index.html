@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-1Infinite</title>
+    <!-- Biblioteca para ícone de pesquisa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <!-- Biblioteca Locomotive Scroll -->
+    <link rel="stylesheet" href="css/locomotive-scroll.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main data-scroll-container>
+    <header>
+        <nav>
+            <img src="imagens/logo.png" alt="-1Infinite" class="logo">
+            <ul>
+                <li>
+                <a href="#">Conectar</a>
+                </li>
+                <li>
+                    <a href="#">Cadastrar</a>
+                </li>
+                <li class="pesquisa">
+                    <a href="#">
+                        <i class="fa-solid fa-magnifying-glass"></i> <!-- Ícone de pesquisa, lupa -->
+                    </a>
+                </li>
+                <li class="hamburguer">
+                    <a href="#">
+                        <div class="bar"></div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <section class="s-initial" data-scroll-section> <!-- Melhora a performance da biblioteca -->
+        <video id="bg" autoplay muted loop playsinline
+        src="videos/bg_stars.mp4"
+        style="position: absolute; top: 0; left: 0; width: 100%; object-fit: cover; z-index: -1;"></video>
+        <img src="imagens/lua.png" id="lua">
+        <img src="imagens/montanha_ia.png" id="montanha" >
+        <img src="imagens/estrada.png" id="estrada" >
+        <h2 id="texto">-1Infinite</h2>
+    </section>
+
+        <section class="s-hero" data-scroll-section>
+            <h1>
+                <span data-scroll data-scroll-delay="0.22" data-scroll-speed="30">P</span>
+                <span data-scroll data-scroll-delay="0.20" data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-delay="0.18" data-scroll-speed="30">r</span>
+                <span data-scroll data-scroll-delay="0.16" data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-delay="0.14" data-scroll-speed="30">l</span>
+                <span data-scroll data-scroll-delay="0.12" data-scroll-speed="30">l</span>
+                <span data-scroll data-scroll-delay="0.10" data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-delay="0.08" data-scroll-speed="30">x</span>
+            </h1>
+        </section>
+
+        <section class="s-tasks" data-scroll-section>
+            <img src="imagens/futuro.jpg" data-scroll data-scroll-speed="5" class="html" alt="">
+            <img src="imagens/japao.jpg" data-scroll data-scroll-speed="2" class="css" alt="">
+            <img src="imagens/noite.jpg" data-scroll data-scroll-speed="3" class="js" alt="">
+            <h1>Tasks Front-End</h1>
+        </section>
+
+        <section class="s-hero" data-scroll-section>
+            <h1>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.22" 
+                data-scroll-speed="30">P</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.20" 
+                data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.18" 
+                data-scroll-speed="30">r</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.16" 
+                data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.14" 
+                data-scroll-speed="30">l</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.12" 
+                data-scroll-speed="30">l</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.10" 
+                data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.08" 
+                data-scroll-speed="30">x</span>
+            </h1>
+        </section>
+    </main>
+
+    <script src="js/locomotive-scroll.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+<script> 
+
+    // EFEITO PARALLAX
+    let bg = document.getElementById("bg"); // 
+    let lua = document.getElementById("lua");
+    let montanha = document.getElementById("montanha");
+    let estrada = document.getElementById("estrada");
+    let texto = document.getElementById("texto");
+
+   scroll.on('scroll', (args) => { /* Normal seria usar 'window.addEventListener', porém a biblioteca do locomotive 
+                                      scroll iria anular. Por isso, usar comando do sistema interno locomotive*/
+        let value = args.scroll.y; // valor do scroll. Quando multiplicado, irá controlar a velocidade do movimento
+
+        bg.style.top = value * 0.5 + 'px'; // Move para baixo, mais devagar que o scroll (efeito de profundidade).
+        lua.style.left = -value * 0.5 + 'px'; // O sinal de - faz a lua ir pro lado oposto.
+        montanha.style.top = -value * 0.15 + 'px'; // Move as montanhas bem devagar pra cima (efeito de distância) *notar o sinal -
+        estrada.style.top = value * 0.15 + 'px'; // Move para baixo
+        texto.style.top = value * 1 + 'px'; // Movimentação na mesma velocidade do scroll
+
+        /*
+            A posição da variável irá mudar de acordo com o valor de 'top' ou 'left'. 
+            Como o valor dessas duas propriedades é calculado com base no valor do scroll, 
+            as variáveis (que são imagens) irão se mover conforme o usuário rola a página. 
+
+            px é a unidade de medida para as
+        */
+
+
+    })
+</script>

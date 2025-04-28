@@ -7,4 +7,3 @@ const scroll = new LocomotiveScroll({
     smooth: true
 });
    
-        
