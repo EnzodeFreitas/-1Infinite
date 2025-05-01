@@ -41,57 +41,109 @@
     <section class="s-initial" data-scroll-section> <!-- Melhora a performance da biblioteca -->
         <video id="bg" autoplay muted loop playsinline
         src="videos/bg_stars.mp4"
-        style="position: absolute; top: 0; left: 0; width: 100%; object-fit: cover; z-index: -1;"></video>
+        style="position: absolute; top: 0; left: 0; width: 100%; object-fit: cover;"></video>
         <img src="imagens/lua.png" id="lua">
-        <img src="imagens/montanha_ia.png" id="montanha" >
-        <img src="imagens/estrada.png" id="estrada" >
+       
+       <!-- <img src="imagens/" id="estrada"> -->
+        
         <h2 id="texto">-1Infinite</h2>
     </section>
 
-        <section class="s-hero" data-scroll-section>
-            <h1>
-                <span data-scroll data-scroll-delay="0.22" data-scroll-speed="30">P</span>
-                <span data-scroll data-scroll-delay="0.20" data-scroll-speed="30">a</span>
-                <span data-scroll data-scroll-delay="0.18" data-scroll-speed="30">r</span>
-                <span data-scroll data-scroll-delay="0.16" data-scroll-speed="30">a</span>
-                <span data-scroll data-scroll-delay="0.14" data-scroll-speed="30">l</span>
-                <span data-scroll data-scroll-delay="0.12" data-scroll-speed="30">l</span>
-                <span data-scroll data-scroll-delay="0.10" data-scroll-speed="30">a</span>
-                <span data-scroll data-scroll-delay="0.08" data-scroll-speed="30">x</span>
-            </h1>
+        <section class="s-hero s-hero-comunidade" data-scroll-section>
+                <h1>
+                    <span data-scroll data-scroll-delay="0.22" data-scroll-speed="30">C</span>
+                    <span data-scroll data-scroll-delay="0.20" data-scroll-speed="30">o</span>
+                    <span data-scroll data-scroll-delay="0.18" data-scroll-speed="30">m</span>
+                    <span data-scroll data-scroll-delay="0.16" data-scroll-speed="30">u</span>
+                    <span data-scroll data-scroll-delay="0.14" data-scroll-speed="30">n</span>
+                    <span data-scroll data-scroll-delay="0.12" data-scroll-speed="30">i</span>
+                    <span data-scroll data-scroll-delay="0.10" data-scroll-speed="30">d</span>
+                    <span data-scroll data-scroll-delay="0.08" data-scroll-speed="30">a</span>
+                    <span data-scroll data-scroll-delay="0.06" data-scroll-speed="30">d</span>
+                    <span data-scroll data-scroll-delay="0.04" data-scroll-speed="30">e</span>
+                </h1> 
+            <div class="conteudo">
+                <p data-scroll data-scroll-speed="2" data-scroll-delay="0.1">
+                    Já pensou em se unir a uma comunidade de pessoas apaixonadas por natureza, viajens e empreendedorismo?
+                    É incrivel como possuem íntima relação. Viajantes ao redor do mundo todo sofrem por não apenas falta 
+                    de recursos financeiros para dar suporte às suas aventuras, mas como também de encontrarem pessoas com os
+                    mesmos hobbies e coragem para se aliarem em uma jornada juntos. Por meio dessa plataforma, todas essas coisas 
+                    possuem uma resposta; com a troca de idéias entre as pessoas aqui presentes (experientes ou não), você conseguirá perceber que existem
+                    diversas maneiras de viajar gastando menos, bem como também receberá dicas e influências caso queira agir e ter consciência do mercado financeiro
+                    e a forma como ele pode auxiliá-lo, trazendo para si melhor autonomia e independência
+                </p>
+            </div>
         </section>
 
         <section class="s-tasks" data-scroll-section>
             <img src="imagens/futuro.jpg" data-scroll data-scroll-speed="5" class="html" alt="">
             <img src="imagens/japao.jpg" data-scroll data-scroll-speed="2" class="css" alt="">
             <img src="imagens/noite.jpg" data-scroll data-scroll-speed="3" class="js" alt="">
-            <h1>Tasks Front-End</h1>
+            <div class="banner">
+                <div class="slider" style="--quantity: 10"> <!--(posição - 1) * (360deg / quantidade) -->
+                    <div class="item" style="--position: 1"><img src="imagens/patagonia1.jpg" alt=""></div>
+                    <div class="item" style="--position: 2"><img src="imagens/noruega2.jpg" alt=""></div>
+                    <div class="item" style="--position: 3"><img src="imagens/machu_picchu3.jpg" alt=""></div>
+                    <div class="item" style="--position: 4"><img src="imagens/bali4.jpg" alt=""></div>
+                    <div class="item" style="--position: 5"><img src="imagens/alpes_suicos5.jpg" alt=""></div>
+                    <div class="item" style="--position: 6"><img src="imagens/han_son_doong6.jpg" alt=""></div>
+                    <div class="item" style="--position: 7"><img src="imagens/blue_lagoon7.jpg" alt=""></div>
+                    <div class="item" style="--position: 8"><img src="imagens/valensole8.jpeg" alt=""></div>
+                    <div class="item" style="--position: 9"><img src="imagens/lucky_bay9.jpg" alt=""></div>
+                    <div class="item" style="--position: 10"><img src="imagens/vinicunca10.jpg" alt=""></div>
+                </div>
+                <div class="content">
+                     <!-- data-content serve para armazenar informações personalizadas e acessar via JS ou CSS, nesse caso está armazenando o texto dentro da tag h1 na própria tag -->
+                    <h1 data-content="Memórias"> 
+                        Destinos
+                    </h1>
+                    <div class="descricao">
+                        <h2>-1 Infinite</h2>
+                        <p><b>Comunidade</b></p>
+                        <p>
+                            Chega de passar sufoco em como criar memórias sozinho.
+                            A partir de agora, faça parte da nossa família
+                        </p>
+                    </div>
+                   <!-- <div class="model"></div> -->
+                </div>
+            </div>
         </section>
 
-        <section class="s-hero" data-scroll-section>
+        <section class="s-hero s-hero-empreendedorismo" data-scroll-section>
             <h1>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.22" 
-                data-scroll-speed="30">P</span>
+                data-scroll-speed="30">E</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.20" 
-                data-scroll-speed="30">a</span>
+                data-scroll-speed="30">m</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.18" 
-                data-scroll-speed="30">r</span>
+                data-scroll-speed="30">p</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.16" 
-                data-scroll-speed="30">a</span>
+                data-scroll-speed="30">r</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.14" 
-                data-scroll-speed="30">l</span>
+                data-scroll-speed="30">e</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.12" 
-                data-scroll-speed="30">l</span>
+                data-scroll-speed="30">e</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.10" 
-                data-scroll-speed="30">a</span>
+                data-scroll-speed="30">n</span>
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.08" 
-                data-scroll-speed="30">x</span>
+                data-scroll-speed="30">d</span>
+                <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.06" 
+                data-scroll-speed="30">a</span>
             </h1>
+
+            <p>Uma das maiores dificuldades em viagens longas para um verdadeiro viajante não é o tédio, mas sim a falta de suprimentos. 
+                Muitas vezes, infelizmente, os viajantes não conseguem permanecer na jornada por falta de organização ou, principalmente, 
+                por limitações financeiras. A proposta de incorporar o empreendedorismo nesta plataforma e comunidade não é para que você 
+                abandone seu trabalho atual, abra uma empresa ou venda todo o seu patrimônio para investir em iniciativas aleatórias. A 
+                ideia é criar uma fonte de renda — passiva ou ativa — que fortaleça sua condição financeira e o ajude a alcançar seus objetivos.
+            </p>
         </section>
     </main>
 
     <script src="js/locomotive-scroll.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/parallax.js"></script>
 </body>
 </html>
 

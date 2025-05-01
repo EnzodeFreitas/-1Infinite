@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black'); /* ICA Rubrick Black */
 
 * 
 {
@@ -197,8 +198,8 @@ body
     width: 100%;
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     h1 {
         display: flex; /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
         span {
@@ -206,6 +207,13 @@ body
             font-size: 6rem;
         }
     }
+}
+
+.s-hero .conteudo
+{
+    display: flex;
+    width: 40%;
+    justify-content: end;
 }
 
 .s-tasks
@@ -237,3 +245,126 @@ body
         font-size: 6rem;
     }
 }
+
+
+
+.banner
+{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden; /* Corta os elementos que 'escapam' */
+    position: relative;
+}
+
+.banner .slider
+{
+    position: absolute; /* Move com precisão em relação ao elemento pai (banner) */
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px); /* Para centralizar (100px equivale a metade de width) */
+    transform-style: preserve-3d; /* 3 dimensões, dando efeito 3D.
+    Em CSS, podemos mover um elemento em 2 direções, tanto no eixo X como Y; entretanto, também podemos dar
+    profundidade a eles: eixo Z */
+    transform: perspective(1000px); /* Distância em relação Z do elemento */
+    animation: autoRun 20s linear infinite; /* 20s para terminar o ciclo; linear: velocidade constante do início ao fim;
+    infinite: animação entra em loop*/
+    z-index: 2;
+}
+
+@keyframes autoRun
+{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg); /* Início da animação */
+    }to{ /* fim da animação */
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg); /* tanto X como Y, traz a visualização de seus ângulos.
+        Sinal - para visualização mais acima  */
+    }
+}
+
+.banner .slider .item
+{
+    position: absolute; /* Para fixar */
+    inset: 0 0 0 0; /* Shortand para top, rigth, bottom e left. Isso resultará tamanho e posição como a classe slider */
+    transform: 
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg)) /*rotateY: Gira cada item em torno do eixo;
+    (position - 1): identifica a posição atual do item (começando em 0);  (360 / quantity): divide a circunferência de 360° de
+    forma igual para os itens; *1deg: faz funcionar o rotateY, declarando a unidade em graus e garantindo que o resultado também seja. */
+    translateZ(550px); /* Para formar a circunferência */
+
+}
+
+.banner .slider .item img
+{
+    width: 100%; /* Igual ao .item */
+    height: 100%; /* Também igual ao .item */
+    border-radius: 20px;
+    object-fit: cover; /* Evitar distorção (preenche completamente o contêiner) */
+    
+}
+
+.banner .content
+{
+    position: absolute; /* Para fixar no banner sem afetar o slider */
+    bottom: 0;
+    left: 50%; /* Posiciona no centro do elemento pai (banner) */
+    transform: translateX(-50%); /* Fará o elemento deslocar 50% dele mesmo para a esquerda */
+    width: min(1400px, 100vw); /* Telas > 1400px: elemento = 1400px; Telas < 1400px: 100% da largura da tela */
+    height: max-content; /* Ajuste ao conteúdo */
+    padding-bottom: 100px; /* Distância extra */
+    display: flex;
+    flex-wrap: wrap;    /* Quebrar linha se preciso */
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.banner .content h1
+{
+    font-family: 'ICA Rubrik', sans-serif;
+    font-size: 16em;
+    line-height: 1em;
+    color: #25283B;
+    position: relative;
+}
+
+.banner .content h1::after
+{
+    position: absolute;
+    inset: 0 0 0 0;  /* mesma posição que h1 */
+    content: attr(data-content);  /* Declarando o conteúdo */
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2;  /* Borda */
+    color: transparent;
+}
+
+.banner .content .descricao 
+{
+    font-family: 'Poppins', sans-serif;
+    text-align: right;
+    max-width: 300px;
+}
+
+.banner .content h2
+{
+    font-size: 3em;
+}
+
+/*
+.banner .content .model
+{
+    width: 100%;
+    height: 75vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%; 
+    background-repeat: no-repeat; 
+    background-position: top center; 
+    z-index: 1;
+
+    background-size _ _ = largura altura. Então largura será automática e altura ultrapassára a do elemento pai .content
+    background-repeat: no-repeat; 
+}
+*/
