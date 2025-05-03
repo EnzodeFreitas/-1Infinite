@@ -9,11 +9,12 @@
                                       scroll iria anular. Por isso, usar comando do sistema interno locomotive*/
         let value = args.scroll.y; // valor do scroll. Quando multiplicado, irá controlar a velocidade do movimento
 
-        bg.style.top = value * 0.5 + 'px'; // Move para baixo, mais devagar que o scroll (efeito de profundidade).
+        bg.style.top = -value * 0.5 + 'px'; // Move para cima, mais devagar que o scroll (efeito de profundidade).
+        texto.style.left = value * 1 + 'px'; // Movimentação na mesma velocidade do scroll
         lua.style.left = -value * 0.5 + 'px'; // O sinal de - faz a lua ir pro lado oposto.
-        montanha.style.top = -value * 0.15 + 'px'; // Move as montanhas bem devagar pra cima (efeito de distância) *notar o sinal -
-        estrada.style.top = value * 0.15 + 'px'; // Move para baixo
-        texto.style.top = value * 1 + 'px'; // Movimentação na mesma velocidade do scroll
+        montanha.style.top = value * 0.15 + 'px'; // Move as montanhas bem devagar pra baixo 
+        montanha_direita.style.top=  value * 0.15 + 'px'; // Camada para esconder o texto (mesma velocidade que motanha original) 
+        
 
         /*
             A posição da variável irá mudar de acordo com o valor de 'top' ou 'left'. 
@@ -22,6 +23,8 @@
 
             px é a unidade de medida para as
         */
+
+        
 
 
     })

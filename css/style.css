@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
 @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black'); /* ICA Rubrick Black */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); /* Lato */
+
 
 * 
 {
@@ -18,106 +20,133 @@
     box-sizing: border-box;    
 }
 
-.logo 
+header.header
 {
-    width: 100px;
-}
-
-header 
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Opacidade */
-    background-color: transparent;
-}
-
-header nav
-{
-    max-width: 1400px;
-    margin: 0 auto; /* Centraliza dentro do header */
-    padding: 0 2rem; /* 0 para cima e embaixo e 2rem aos lados */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    width: calc(100% - 16px); /* Para conseguir navegar pela scrollbar */
+    height: 125px;
+    position: fixed;
+    z-index: 2;
+    padding: 10px 50px; /* _ vertical _ horizontal */
 }
 
-header ul 
+header.header .hamburguer
 {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-header ul a
-{
-    text-decoration: none;
+    font-size: 25px;
     color: #fff;
-    padding: 0 1.5rem;
-    text-transform: uppercase; /* Transforma em maiúsculo */
-    font-weight: 300; /* Espessura */
-    font-size: 0.83rem; /* Tamanho */
+    cursor: pointer;
 }
 
-.pesquisa a
+header.header ul.menu
 {
-    font-size: 1.05rem;
-    padding: 0 3rem;
+    list-style: none;
 }
 
-.hamburguer
+header.header ul.menu li
 {
-    padding-left: 1.5rem;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize; /* Transforma primeira letra de cada palavra em maiúscula*/
+    display: inline-block; /* Inline: elemento em linha; block: permite definir altura e largura*/
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
 }
 
-.hamburguer a
+header.header ul.menu li:not(:last-child) /* Todos elementos exceto último */
 {
-    padding: 0; /* Removendo o padding para que a forma não fique em elipse */
-    width: 37px;
-    height: 37px;
+    margin-right: 35px;
+}
+
+header.header .search
+{
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.side
+{
+    position: fixed;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    width: calc(100% - 16px); /* Para conseguir mexer na scrollbar */
+    z-index: 1;
+}
+
+.side ul.social
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%); /* Centralizar verticalmente à tela em relação a si */
+    font-size: 24px;
+}
+
+.side ul.social li
+{
+    padding: 20px;
+    cursor: pointer;
+}
+
+.feature
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
-    border-radius: 50%; /* Transforma em círculo */
-    background-color: rgba(115, 115, 115, 0.7);
-    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo; px define a intensidade */
-    -webkit-backdrop-filter: blur(10px); /* Garante compatibilidade com os navegadores baseados em WebKit */
-    justify-content: center; /* Irá auxiliar a estilização da classe .bar, assim como align-items */
+    justify-content: center;
     align-items: center;
 }
 
-.hamburguer .bar 
+.feature .feature-card
 {
-    position: relative;
-    width: 52%;
-    height: 1.3px;
-    background-color: #fff;
-    border-radius: 2px;
+    text-decoration-thickness: 25%; /* Espessura do sublinhado*/
+    padding: 40px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.hamburguer .bar::before, 
-.hamburguer .bar::after 
+.feature .feature-card:not(:last-child) 
 {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Alinhar ao meio do eixo X*/
-    width: 60%;
-    height: 50%;
-    background-color: inherit;
-    border-radius: 2px;
-    
+    margin-right: 20px;
 }
 
-.hamburguer .bar::before
+.feature .feature-card h5
 {
-    top: -4.5px; /*Para ficar encima */
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700; /* Espessura da fonte 100:lighter; 400: normal; 700: bold */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 15px;
 }
 
-.hamburguer .bar::after
+.feature .feature-card i /* Ícone */
 {
-    top: 4.5px; /* Oposto do before */
+    margin-right: 2px;
+    font-size: 16px;
+}
+
+.feature .feature-card p
+{
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 0;
 }
 
 body 
@@ -180,12 +209,18 @@ body
     z-index: 1;
 }
 
+#montanha_direita
+{
+    z-index: 3;
+
+}
+
 #estrada
 {
     z-index: 2;
 }
 
-.s-tasks img
+.s-hero img
 {
     width: 50px;
     height: 50px;
@@ -195,17 +230,52 @@ body
 
 .s-hero
 {
+    position: relative; /* Para poder mexer na position da img */
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    h1 {
-        display: flex; /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
-        span {
-            color: #fff;
-            font-size: 6rem;
+
+    img {
+        position: absolute;
+        &.mochila { /* & significa o seletor-pai (s-tasks) */
+            top: 15%;
+            left: 20%;
         }
+        &.mapa  {
+            top: 10%;
+            right: 20%;
+        }
+        &.fogueira {
+            bottom: 15%;
+            left: 25%;
+        }
+        &.kombi {
+            top: 15%;
+            left: 20%;
+        }
+        &.moeda {
+            top: 10%;
+            right: 20%;
+        }
+        &.grafico {
+            bottom: 15%;
+            left: 25%;
+        }
+}
+
+h1 {
+    position: absolute; 
+    height: 100%; 
+    display: flex;
+    flex-wrap: wrap;    /* Quebrar linha se preciso */
+    display: flex; /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
+    
+    span {
+        
+        color: #fff;
+        font-size: 6rem;
     }
 }
 
@@ -218,27 +288,13 @@ body
 
 .s-tasks
 {
-    position: relative; /* Para poder mexer na position da img */
+    position: relative;
     width: 100%;
     height: 100vh;
     background: #263140;
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-        position: absolute;
-        &.html { /* & significa o seletor-pai (s-tasks) */
-            top: 15%;
-            left: 20%;
-        }
-        &.css  {
-            top: 10%;
-            right: 20%;
-        }
-        &.js {
-            bottom: 15%;
-            left: 25%;
-        }
     }
     h1 {
         color: #fff;
@@ -260,9 +316,9 @@ body
 .banner .slider
 {
     position: absolute; /* Move com precisão em relação ao elemento pai (banner) */
-    width: 200px;
-    height: 250px;
-    top: 10%;
+    width: 200px; /* referente às imagens  */
+    height: 200px; /* também referente às imagens */
+    top: 28%;
     left: calc(50% - 100px); /* Para centralizar (100px equivale a metade de width) */
     transform-style: preserve-3d; /* 3 dimensões, dando efeito 3D.
     Em CSS, podemos mover um elemento em 2 direções, tanto no eixo X como Y; entretanto, também podemos dar
@@ -304,23 +360,22 @@ body
     
 }
 
-.banner .content
+.content
 {
     position: absolute; /* Para fixar no banner sem afetar o slider */
-    bottom: 0;
     left: 50%; /* Posiciona no centro do elemento pai (banner) */
     transform: translateX(-50%); /* Fará o elemento deslocar 50% dele mesmo para a esquerda */
     width: min(1400px, 100vw); /* Telas > 1400px: elemento = 1400px; Telas < 1400px: 100% da largura da tela */
-    height: max-content; /* Ajuste ao conteúdo */
+    height: 100%; /* Ajuste ao conteúdo */
     padding-bottom: 100px; /* Distância extra */
     display: flex;
     flex-wrap: wrap;    /* Quebrar linha se preciso */
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     z-index: 1;
 }
 
-.banner .content h1
+.content h1
 {
     font-family: 'ICA Rubrik', sans-serif;
     font-size: 16em;
@@ -329,7 +384,7 @@ body
     position: relative;
 }
 
-.banner .content h1::after
+.content h1::after
 {
     position: absolute;
     inset: 0 0 0 0;  /* mesma posição que h1 */
@@ -339,20 +394,20 @@ body
     color: transparent;
 }
 
-.banner .content .descricao 
+.content .descricao 
 {
     font-family: 'Poppins', sans-serif;
     text-align: right;
     max-width: 300px;
 }
 
-.banner .content h2
+.content h2
 {
     font-size: 3em;
 }
 
 /*
-.banner .content .model
+.content .model
 {
     width: 100%;
     height: 75vh;
