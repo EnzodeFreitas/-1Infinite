@@ -193,6 +193,7 @@ body
 .s-initial img 
 {
   position: absolute;
+  display: flex;
   top: 0;
   left: 0;
   width: 100%;
@@ -206,7 +207,12 @@ body
     position: relative;
     color: #fff;
     font-size: 8vw;
-    z-index: 1;
+    z-index: 2;
+}
+
+#montanha
+{
+    z-index: 2;
 }
 
 #montanha_direita
@@ -215,9 +221,14 @@ body
 
 }
 
-#estrada
-{
-    z-index: 2;
+#lua
+{   
+    position: absolute;
+    top: 10%;
+    left: 75%;
+    height: 180px;
+    width: 180px;  
+    z-index: 1;
 }
 
 .s-hero img
