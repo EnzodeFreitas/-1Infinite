@@ -30,6 +30,8 @@ header.header
     position: fixed;
     z-index: 2;
     padding: 10px 50px; /* _ vertical _ horizontal */
+    transition: all .50s ease; /* ease:  começa devagar, acelera no meio e desacelera no final 
+                                all:  TODAS as propriedades que mudarem */
 }
 
 header.header .hamburguer
@@ -37,6 +39,14 @@ header.header .hamburguer
     font-size: 25px;
     color: #fff;
     cursor: pointer;
+    transition: all 0.6s;
+}
+
+header.header .hamburguer:hover
+{
+    transform: translateY(-5px); /* Mover para cima */
+    color: #4ab6e4;
+   
 }
 
 header.header ul.menu
@@ -51,8 +61,17 @@ header.header ul.menu li
     text-transform: capitalize; /* Transforma primeira letra de cada palavra em maiúscula*/
     display: inline-block; /* Inline: elemento em linha; block: permite definir altura e largura*/
     color: #fff;
+    transition: all 0.6s ease;
     font-family: 'Lato', sans-serif;
     cursor: pointer;
+}
+
+header.header ul.menu li:hover
+{
+    transform: translateY(-5px);
+    color: #5ac8fa; 
+    text-shadow: 0 0 8px 5ac8fa;
+    
 }
 
 header.header ul.menu li:not(:last-child) /* Todos elementos exceto último */
@@ -60,11 +79,52 @@ header.header ul.menu li:not(:last-child) /* Todos elementos exceto último */
     margin-right: 35px;
 }
 
-header.header .search
+
+header.header .right-content
 {
-    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.menu.hidden,
+.social.hidden 
+{
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Impossibilita o mouse de interação com os elementos*/
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu,
+.social
+{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-btn
+{
+    display: inline-block;
+    padding: 9px 24px;
+    background-color: transparent;
+    border: 2px solid #fff;
     color: #fff;
-    cursor: pointer;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .6s ease; 
+    backdrop-filter: blur(4px)
+}
+
+.nav-btn:hover
+{
+    transform: translateY(-5px); /* Mover para cima */
+    border: 2px solid #5ac8fa;
+    color: #5ac8fa;
+    background-color: rgba(90, 200, 250, 0.1);
+    box-shadow: 0 0 5px #5ac8fa;
+
 }
 
 .side
@@ -93,6 +153,15 @@ header.header .search
 {
     padding: 20px;
     cursor: pointer;
+    transition: all 0.6s;
+}
+
+.side ul.social li:hover 
+{
+    transform: translateY(-5px);
+    color: #5ac8fa;
+    text-shadow: 0 0 8px #5ac8fa;
+    
 }
 
 .feature
@@ -208,6 +277,17 @@ body
     color: #fff;
     font-size: 8vw;
     z-index: 2;
+    animation: flicker 2s ease-in-out infinite; /* animação flicker que durará 2s; ease-in-out: começa devagar,
+                                                acelera no meio e termina devagar*/
+}
+
+@keyframes flicker {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(90, 200, 250, 0.4); /* , significa sombras "empilhadas"*/
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(90, 200, 250, 0.3), 0 0 5px rgba(0, 255, 195, 0.3);
+    }
 }
 
 #montanha
@@ -231,6 +311,7 @@ body
     z-index: 1;
 }
 
+/* ===== S-HERO ===== */
 .s-hero img
 {
     width: 50px;
@@ -245,8 +326,35 @@ body
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+
+    h1 {
+    position: absolute;  
+    display: flex;
+    flex-wrap: wrap;    /* Quebrar linha se preciso */
+
+    /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
+    span {
+        
+        color: #fff;
+        font-size: 6rem;
+    }
+    }
+
+}
+
+.s-hero .conteudo
+{
+    width: 45%;
+    text-align: justify;
+    color: #fff;
+}
+
+/* S-HERO 1 */
+.hero-1
+{
+    justify-content: start;
+    left: 5%;
 
     img {
         position: absolute;
@@ -262,6 +370,23 @@ body
             bottom: 15%;
             left: 25%;
         }
+    }
+}
+
+.hero-1 h1 
+{
+    height: 80%;
+    width: 45%;
+}
+
+/* S-HERO 2 */
+.hero-2
+{
+    justify-content: end;
+    right: 5%;
+
+    img {
+        position: absolute;
         &.kombi {
             top: 15%;
             left: 20%;
@@ -274,27 +399,13 @@ body
             bottom: 15%;
             left: 25%;
         }
-}
-
-h1 {
-    position: absolute; 
-    height: 100%; 
-    display: flex;
-    flex-wrap: wrap;    /* Quebrar linha se preciso */
-    display: flex; /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
-    
-    span {
-        
-        color: #fff;
-        font-size: 6rem;
     }
 }
 
-.s-hero .conteudo
+.hero-2 h1 
 {
-    display: flex;
-    width: 40%;
-    justify-content: end;
+    height: 80%;
+    width: 45%;
 }
 
 .s-tasks
@@ -302,7 +413,7 @@ h1 {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: #263140;
+    background: #0a2a43;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,7 +422,6 @@ h1 {
         color: #fff;
         font-size: 6rem;
     }
-}
 
 
 

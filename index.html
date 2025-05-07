@@ -15,9 +15,9 @@
     <!-- HEADER -->
     <main data-scroll-container>
     <header class="header">
-        <div class="hamburguer">
-            <i class="bx bx-menu"></i>
-        </div>
+         <div class="hamburguer">
+            <i id="menu-icon" class="bx bx-x" onclick="hideMenu()"></i>
+        </div> 
 
         <ul class="menu">
             <li class="menu-item">home</li>
@@ -28,8 +28,9 @@
             <li class="menu-item">contact</li>
         </ul>
 
-        <div class="search">
-            <i class="bx bx-search"></i>
+        <div class="right-content">
+            <a href="#" class="nav-btn">Entrar</a>
+            <div id="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
 
@@ -38,6 +39,7 @@
         <ul class="social">
             <li class="social-item"><i class="bx bxl-facebook"></i></li>
             <li class="social-item"><i class="bx bxl-instagram"></i></li>
+            <li class="social-item"><i class="bx bxl-github"></i></li>
         </ul>
 
         <div class="feature">
@@ -63,21 +65,21 @@
     </section>
 
     <!-- S-HERO 1 -->
-        <section class="s-hero" data-scroll-section>
+        <section class="s-hero hero-1" data-scroll-section>
             <img src="imagens/mochila.png" data-scroll data-scroll-speed="5" class="mochila" alt="">
             <img src="imagens/mapa.png"   data-scroll data-scroll-speed="2" class="mapa" alt="">
             <img src="imagens/fogueira.png" data-scroll data-scroll-speed="3" class="fogueira" alt="">
                 <h1>
-                    <span data-scroll data-scroll-delay="0.22" data-scroll-speed="30">C</span>
-                    <span data-scroll data-scroll-delay="0.20" data-scroll-speed="30">o</span>
-                    <span data-scroll data-scroll-delay="0.18" data-scroll-speed="30">m</span>
-                    <span data-scroll data-scroll-delay="0.16" data-scroll-speed="30">u</span>
-                    <span data-scroll data-scroll-delay="0.14" data-scroll-speed="30">n</span>
-                    <span data-scroll data-scroll-delay="0.12" data-scroll-speed="30">i</span>
-                    <span data-scroll data-scroll-delay="0.10" data-scroll-speed="30">d</span>
-                    <span data-scroll data-scroll-delay="0.08" data-scroll-speed="30">a</span>
-                    <span data-scroll data-scroll-delay="0.06" data-scroll-speed="30">d</span>
-                    <span data-scroll data-scroll-delay="0.04" data-scroll-speed="30">e</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.22" data-scroll-speed="30">C</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.20" data-scroll-speed="30">o</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.18" data-scroll-speed="30">m</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.16" data-scroll-speed="30">u</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.14" data-scroll-speed="30">n</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.12" data-scroll-speed="30">i</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.10" data-scroll-speed="30">d</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.08" data-scroll-speed="30">a</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.06" data-scroll-speed="30">d</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.04" data-scroll-speed="30">e</span>
                 </h1> 
             <div class="conteudo">
                 <p data-scroll data-scroll-speed="2" data-scroll-delay="0.1">
@@ -126,7 +128,7 @@
         </section>
 
         <!-- S-HERO 2 -->
-        <section class="s-hero" data-scroll-section>
+        <section class="s-hero hero-2" data-scroll-section>
             <img src="imagens/kombi.png" data-scroll data-scroll-speed="5" class="kombi" alt="kombi">
             <img src="imagens/moeda.png" data-scroll data-scroll-speed="2" class="moeda" alt="">
             <img src="imagens/grafico.png" data-scroll data-scroll-speed="3" class="grafico" alt="">
@@ -150,13 +152,15 @@
                 <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.06" 
                 data-scroll-speed="30">a</span>
             </h1>
-
-            <p>Uma das maiores dificuldades em viagens longas para um verdadeiro viajante não é o tédio, mas sim a falta de suprimentos. 
-                Muitas vezes, infelizmente, os viajantes não conseguem permanecer na jornada por falta de organização ou, principalmente, 
-                por limitações financeiras. A proposta de incorporar o empreendedorismo nesta plataforma e comunidade não é para que você 
-                abandone seu trabalho atual, abra uma empresa ou venda todo o seu patrimônio para investir em iniciativas aleatórias. A 
-                ideia é criar uma fonte de renda — passiva ou ativa — que fortaleça sua condição financeira e o ajude a alcançar seus objetivos.
-            </p>
+            
+            <div class="conteudo">
+                <p>Uma das maiores dificuldades em viagens longas para um verdadeiro viajante não é o tédio, mas sim a falta de suprimentos. 
+                    Muitas vezes, infelizmente, os viajantes não conseguem permanecer na jornada por falta de organização ou, principalmente, 
+                    por limitações financeiras. A proposta de incorporar o empreendedorismo nesta plataforma e comunidade não é para que você 
+                    abandone seu trabalho atual, abra uma empresa ou venda todo o seu patrimônio para investir em iniciativas aleatórias. A 
+                    ideia é criar uma fonte de renda — passiva ou ativa — que fortaleça sua condição financeira e o ajude a alcançar seus objetivos.
+                </p>
+            </div>
         </section>
     </main>
     
@@ -164,5 +168,13 @@
     <script src="js/locomotive-scroll.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/parallax.js"></script>
+    <script src="js/hideMenu.js"></script>
 </body>
 </html>
+
+<script>
+
+    
+
+
+</script>
