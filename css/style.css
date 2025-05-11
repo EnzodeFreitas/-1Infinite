@@ -220,7 +220,7 @@ header.header .right-content
 
 body 
 {
-    background: #0a2a43;
+    background: #050f1a;
     min-height: 15000px;  /* Bastante altura pra que o scroll e o efeito parallax funcionem */
     
 }
@@ -245,7 +245,7 @@ body
     bottom: 0; /* Para que fique na parte debaixo da section*/
     width: 100%;
     height: 100px;
-    background: linear-gradient(to top, #0a2a43, transparent);
+    background: linear-gradient(to top, #050f1a, transparent);
     z-index: 10000; /*Coloca a camada acima de tudo */
 }
 
@@ -257,7 +257,7 @@ body
     left: 0; /* Define que começará à esquerda */ 
     width: 100%;
     height: 100%;
-    background: #0a2a43;
+    background: linear-gradient(to top, #050f1a, transparent);
     z-index: 10000; /* Mesma camada que o before*/
     mix-blend-mode: color; /* Mistura a cor com os elementos*/
 }
@@ -315,7 +315,7 @@ body
 }
 
 /* ===== S-HERO ===== */
-.s-hero img
+.s-hero img:not(:last-child)
 {
     width: 50px;
     height: 50px;
@@ -330,7 +330,7 @@ body
     height: 100vh;
     display: flex;
     align-items: center;
-
+    overflow: hidden;
 
     h1 {
     position: absolute;  
@@ -355,13 +355,14 @@ body
 }
 
 /* S-HERO 1 */
-.hero-1 /* Apenas não na div bg-1*/
+.hero-1 
 {
+    
     justify-content: start;
 
     img {
         position: absolute;
-        &.mochila { /* & significa o seletor-pai (s-tasks) */
+        &.mochila { /* & significa o seletor-pai*/
             top: 15%;
             left: 20%;
         }
@@ -378,29 +379,50 @@ body
 
 .hero-1 h1 
 {
+    position: absolute;
     height: 80%;
     width: 45%;
+    top: 10%;
+    left: 0;
 }
+
 
 .hero-1 .conteudo 
 {
     position: absolute;
     left: 5%;
+    
 }
 
-
-.hero-1 .bg-1
+.hero-1 .img-camera
 {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('../imagens/bg_com.jpg'); 
-    background-size: cover;
-    background-position: center;
+    height: 40%;
+    width: 43%;
+    left: 53%;
+    background-image: url('../imagens/camera_walter.jpg'); 
+    background-size: cover;  /* Redimensionada para caber inteira */
     background-repeat: no-repeat;
-
+    background-position: center; /* Alinhada ao centro da div */
+    border-radius: 10%;
+    filter: brightness(1.1) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%); /* Gradiente circular do meio para as bordas
+    até 60% do raio. De 60% até 100% a cor vai mudando de preto para transaprente. Não significa cor preta, mas sim 
+    a opacidade 1 da cor */
+    z-index: 1;
+    overflow: hidden
 }
 
+.hero-1 .conteudo[data-scroll] {
+    transition: transform 1s ease-out;
+    transform: translateX(0);
+}
+
+
+.hero-1 .img-camera[data-scroll] {
+    transition: transform 1s ease-out;
+    transform: translateY(0); 
+}
 
 /* S-HERO 2 */
 .hero-2 
@@ -427,7 +449,8 @@ body
 .hero-2 h1 
 {
     height: 80%;
-    width: 45%;
+    width: 50%;
+    
 }
 
 .hero-2 .conteudo
@@ -436,26 +459,29 @@ body
     right: 5%;
 }
 
-.hero-2 .bg-2
+.hero-2 .img-mochilao
 {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('../imagens/bg_com.jpg'); 
-    background-size: cover;
-    background-position: center;
+    height: 40%;
+    width: 43%;
+    right: 53%; /* Posiciona no centro do elemento pai (banner) */
+    background-image: url('../imagens/mochilao_walter.jpg'); 
+    background-size: cover;  /* Redimensionada para caber inteira */
     background-repeat: no-repeat;
-    z-index: -1;
-
+    background-position: center; /* Alinhada ao centro da div */
+    border-radius: 10%;
+    filter: brightness(1.1) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    z-index: 1;
 }
 
+/* ===== S-TASKS =====  */
 
 .s-tasks
 {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: #0a2a43;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -587,3 +613,23 @@ body
 }
 */
 
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: #050f1a;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease-out, transform 0.5 ease-out;
+}
+
+.fade-in.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -10,17 +10,16 @@
 
 body
 {
-    background: url("../imagens/japao.jpg");
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed; /* Fundo fixo na tela */
-    background-repeat: no-repeat;
+    position: relative;
+    background-color: #050f1a;
 
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     padding: 0 20px;
+
+    overflow: hidden; /* Tirar a navbar */
 }
 
 /* ===== FORM ===== */
@@ -68,13 +67,6 @@ body
     position: absolute;
     width: 400px;
 
-}
-
-.form-image
-{
-    position: absolute;
-    width: 400px;
-   
 }
 
 /* ===== Form Image Animation ===== */
@@ -284,4 +276,14 @@ body
 .social-login i:hover
 {
     transform: scale(0.9); /* Tamanho escala */
+}
+
+#particles-js
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
