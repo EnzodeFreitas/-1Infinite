@@ -43,7 +43,9 @@ body
     justify-content: center;
     flex-direction: column;
     width: 55%;
-    background: rgba(255, 255, 255, 0.3 );
+    background: linear-gradient(to bottom, #21264D, #141B30, #050F1A);
+    mask-image: radial-gradient(circle, black 80%, transparent 100%);
+    filter: brightness(1.1) contrast(1.2) saturate(1.5);
     backdrop-filter: blur(30px);
     border-radius: 0 30% 20% 0;
     transition: border-radius .3s; /* . representa decimais, ou seja, 0.3segundos */
@@ -276,6 +278,7 @@ body
 .social-login i:hover
 {
     transform: scale(0.9); /* Tamanho escala */
+    background: linear-gradient(to bottom, #21264D, #141B30, #050F1A);
 }
 
 #particles-js

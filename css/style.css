@@ -362,15 +362,15 @@ body
 
     img {
         position: absolute;
-        &.mochila { /* & significa o seletor-pai*/
-            top: 15%;
-            left: 20%;
+        &.foco { /* & significa o seletor-pai*/
+            top: 20%;
+            left: 30%;
         }
-        &.mapa  {
+        &.camera  {
             top: 10%;
             right: 20%;
         }
-        &.fogueira {
+        &.floco {
             bottom: 15%;
             left: 25%;
         }
@@ -401,7 +401,7 @@ body
     width: 43%;
     left: 53%;
     background-image: url('../imagens/camera_walter.jpg'); 
-    background-size: cover;  /* Redimensionada para caber inteira */
+    background-size: cover;  /* Redimensiona para caber inteira */
     background-repeat: no-repeat;
     background-position: center; /* Alinhada ao centro da div */
     border-radius: 10%;
@@ -414,15 +414,9 @@ body
 }
 
 .hero-1 .conteudo[data-scroll] {
-    transition: transform 1s ease-out;
-    transform: translateX(0);
+    transition: transform 0.5s ease-out;
 }
 
-
-.hero-1 .img-camera[data-scroll] {
-    transition: transform 1s ease-out;
-    transform: translateY(0); 
-}
 
 /* S-HERO 2 */
 .hero-2 
@@ -431,15 +425,15 @@ body
 
     img {
         position: absolute;
-        &.kombi {
-            top: 15%;
-            left: 20%;
+        &.placeholder {
+            top: 30%;
+            left: 5%;
         }
-        &.moeda {
-            top: 10%;
-            right: 20%;
+        &.mochila {
+            top: 18%;
+            right: 22%;
         }
-        &.grafico {
+        &.hitmarker {
             bottom: 15%;
             left: 25%;
         }
@@ -473,6 +467,69 @@ body
     filter: brightness(1.1) contrast(1.2) saturate(1.5);
     mask-image: radial-gradient(circle, black 60%, transparent 100%);
     z-index: 1;
+}
+
+/*=====  S-HERO 3 ===== */
+
+.hero-3 
+{
+    justify-content: start;
+
+    img {
+        position: absolute;
+        &.kombi {
+            top: 30%;
+            left: 0%;
+        }
+        &.viajantes {
+            top: 20%;
+            right: 20%;
+        }
+        &.moeda {
+            bottom: 15%;
+            left: 25%;
+        }
+    }
+}
+
+.hero-3 h1 
+{
+    height: 80%;
+    width: 50%;
+    left: 5%;
+    
+}
+
+.hero-3 .conteudo
+{   
+    position: absolute;
+    left: 5%;
+}
+
+.hero-3 .img-mochilao
+{
+    position: absolute;
+    height: 40%;
+    width: 43%;
+    left: 53%;
+    background-image: url('../imagens/comunidade_walter2.jpg'); 
+    background-size: cover;  
+    background-repeat: no-repeat;
+    background-position: center; 
+    border-radius: 10%;
+    filter: brightness(1.0) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    z-index: 1;
+}
+
+/* ===== EFEITO IMAGENS ===== */
+.fade-in { /*Começa invisível */
+  opacity: 0;
+  transition: opacity 3s ease-in; /* Começa devagar termina rápido */
+}
+
+.fade-in.is-inview { /* Ao entrar na class inview do Locomotive scroll */
+  opacity: 1;
 }
 
 /* ===== S-TASKS =====  */
@@ -586,32 +643,27 @@ body
 .content .descricao 
 {
     font-family: 'Poppins', sans-serif;
-    text-align: right;
+    text-align: right, justify;
     max-width: 300px;
+    
 }
 
 .content h2
 {
     font-size: 3em;
+    color: #25283B;
 }
 
-/*
-.content .model
+.content p b
 {
-    width: 100%;
-    height: 75vh;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-size: auto 130%; 
-    background-repeat: no-repeat; 
-    background-position: top center; 
-    z-index: 1;
-
-    background-size _ _ = largura altura. Então largura será automática e altura ultrapassára a do elemento pai .content
-    background-repeat: no-repeat; 
+    color: #25283B;
 }
-*/
+
+.content p 
+{
+    color: #d2d2d2;
+}
+
 
 #particles-js {
     position: fixed;
@@ -623,13 +675,9 @@ body
     background: #050f1a;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.5s ease-out, transform 0.5 ease-out;
+.scroll-spacer 
+{
+    height: 300vh;
+    background: transparent;
 }
 
-.fade-in.is-inview {
-  opacity: 1;
-  transform: translateY(0);
-}
