@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-1Infinite</title>
+    <!-- Biblioteca para ícone -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- Biblioteca Locomotive Scroll -->
+    <link rel="stylesheet" href="css/locomotive-scroll.css">
+    <!-- Bibliteca particle.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Partículas por toda a page -->
+    <div id="particles-js"></div>
+    <!-- HEADER -->
+    <main data-scroll-container>
+    <header class="header">
+         <div class="hamburguer">
+            <i id="menu-icon" class="bx bx-x" onclick="hideMenu()"></i>
+        </div> 
+
+        <ul class="menu">
+            <li class="menu-item">Família -1Infinite</li>
+        </ul>
+
+        <div class="right-content">
+            <a href="#" class="nav-btn">Entrar</a>
+            <div id="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <!-- SIDE -->
+     <div class="side">
+        <ul class="social">
+            <li class="social-item"><i class="bx bxl-facebook"></i></li>
+            <li class="social-item"><i class="bx bxl-instagram"></i></li>
+            <li class="social-item"><i class="bx bxl-discord"></i></li>
+            <li class="social-item"><i class="bx bxl-github"></i></li>
+        </ul>
+
+        <!-- <div class="feature">
+            <div class="feature-card">
+                <h5><i class="bx bx-been-here"></i> tours
+                </h5>
+                <p>dsdsdsdsdsds</p>
+            </div> -->
+        </div>
+     </div>
+    
+    <!-- S-INITIAL -->
+    <section class="s-initial" data-scroll-section> <!-- Melhora a performance da biblioteca -->
+        
+        <video id="bg" autoplay muted loop playsinline
+        src="./assets/video/bg_stars.mp4"
+        style="position: absolute; top: 0; left: 0; width: 100%; object-fit: cover;"></video>
+        <img src="./assets/imgs/montanha_ia.png" id="montanha">
+        <img src="./assets/imgs/lua2.png" id="lua">
+        <img src="./assets/imgs/montanha_direita.png" id="montanha_direita">
+    
+        
+        <h2 id="texto">-1Infinite</h2>
+    </section>
+
+    <!-- S-HERO 1 -->
+        <section class="s-hero hero-1" data-scroll-section>
+        
+            <img src="./assets/imgs/foco.png" data-scroll data-scroll-speed="5" class="foco">
+            <img src="./assets/imgs/camera.png"   data-scroll data-scroll-speed="2" class="camera">
+            <img src="./assets/imgs/floco.png" data-scroll data-scroll-speed="3" class="floco">
+            <div class="img-camera fade-in" data-scroll data-scroll-delay="0.1"></div>
+                <h1>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.22" data-scroll-speed="30">F</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.20" data-scroll-speed="30">o</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.18" data-scroll-speed="30">t</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.16" data-scroll-speed="30">o</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.14" data-scroll-speed="30">g</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.12" data-scroll-speed="30">r</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.10" data-scroll-speed="30">a</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.08" data-scroll-speed="30">f</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.06" data-scroll-speed="30">i</span>
+                    <span data-scroll data-scroll-direction="horizontal" data-scroll-delay="0.04" data-scroll-speed="30">a</span>
+                </h1> 
+            <div class="conteudo" data-scroll data-scroll-direction="horizontal" data-scroll-speed="-30">
+                <p>
+                    Já parou e pensou como é extraordinariamente estranho nós conseguirmos registrar momentos presentes com uma câmera? Objeto o qual
+                    é criado através dos próprios elementos da natureza e suas matérias-primas. Corriqueiramente, nós não apreciamos as coisas
+                    simples da vida e como elas possuem imenso valor e significado. Com os afazeres do dia a dia, acabamos por entrar em modo automático e não apreciamos e contemplamos o que está na nossa frente. Esse fato, por exemplo, de como é feito a câmera passa batido por muitos; fato este que traz consigo reflexões e consequências únicas e poderosas. Uma única foto, pode trazer a lume inúmeras vivências, memórias e até sentimentos adversos, como nostalgia e alegria. Ela nos lembra de momentos passados, dando margem para termos esperança de vivermos coisas semelhantes e maiores no futuro. Esta é a influência que uma fotografia possui: é muito mais que um registro. É vida.
+                </p>
+            </div>
+        </section>
+
+        <!-- S- TASKS -->
+        <section class="s-tasks" data-scroll-section>
+            <div class="content">
+                <!-- data-content serve para armazenar informações personalizadas e acessar via JS ou CSS, nesse caso está armazenando o texto dentro da tag h1 na própria tag -->
+               <h1 data-content="Memórias"> 
+                   Destinos
+               </h1>
+               <div class="descricao">
+                   <h2>-1 Infinite</h2>
+                   <p><b>Família</b></p>
+                   <p>
+                       O nosso tempo aqui é finito,
+                       mas as vivências, experiências e memórias
+                       que podemos criar são INFINITAS
+                   </p>
+               </div>
+              <!-- <div class="model"></div> -->
+           </div>
+            <div class="banner">
+                <div class="slider" style="--quantity: 10"> <!--(posição - 1) * (360deg / quantidade) -->
+                    <div class="item" style="--position: 1"><img src="./assets/imgs/patagonia1.jpg"></div>
+                    <div class="item" style="--position: 2"><img src="./assets/imgs/noruega2.jpg"></div>
+                    <div class="item" style="--position: 3"><img src="./assets/imgs/machu_picchu3.jpg"></div>
+                    <div class="item" style="--position: 4"><img src="./assets/imgs/bali4.jpg"></div>
+                    <div class="item" style="--position: 5"><img src="./assets/imgs/alpes_suicos5.jpg"></div>
+                    <div class="item" style="--position: 6"><img src="./assets/imgs/han_son_doong6.jpg"></div>
+                    <div class="item" style="--position: 7"><img src="./assets/imgs/blue_lagoon7.jpg"></div>
+                    <div class="item" style="--position: 8"><img src="./assets/imgs/valensole8.jpeg"></div>
+                    <div class="item" style="--position: 9"><img src="./assets/imgs/lucky_bay9.jpg"></div>
+                    <div class="item" style="--position: 10"><img src="./assets/imgs/vinicunca10.jpg"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- S-HERO 2 -->
+        <section class="s-hero hero-2" data-scroll-section>
+            <img src="./assets/imgs/placeholder.png" data-scroll data-scroll-speed="5" class="placeholder">
+            <img src="./assets/imgs/mochila.png" data-scroll data-scroll-speed="2" class="mochila">
+            <img src="./assets/imgs/hitmarker_planet.png" data-scroll data-scroll-speed="3" class="hitmarker">
+            <h1>
+                <span data-scroll data-scroll-delay="0.22" 
+                data-scroll-speed="30">M</span>
+                <span data-scroll data-scroll-delay="0.20" 
+                data-scroll-speed="30">o</span>
+                <span data-scroll data-scroll-delay="0.18" 
+                data-scroll-speed="30">c</span>
+                <span data-scroll data-scroll-delay="0.16" 
+                data-scroll-speed="30">h</span>
+                <span data-scroll data-scroll-delay="0.14" 
+                data-scroll-speed="30">i</span>
+                <span data-scroll data-scroll-delay="0.12" 
+                data-scroll-speed="30">l</span>
+                <span data-scroll data-scroll-delay="0.10" 
+                data-scroll-speed="30">ã</span>
+                <span data-scroll data-scroll-delay="0.08" 
+                data-scroll-speed="30">o</span>
+            </h1>
+            
+            <div class="conteudo" data-scroll data-scroll-speed="30" data-scroll-delay="0.10" >
+                <p>
+                    Fazer viagens é algo que grande parte da população mundial aprecia, porém fazê-las através da arte do "mochilão" é para poucos. Esse espírito
+                    aventureiro de ir mundo afora, bem como buscar e entender novas culturas, criando memórias, enfrentando desconfortos, mas 
+                    ainda assim satisfeito por meio das vivências adquiridas é uma característica que todo "mochileiro" possui.
+                    A sensação de liberdade quando nos deparamos com a imensidão do mundo é algo que nos preenche. Sentimo-nos interligados 
+                    com nós mesmos, os outros e — deixando a religião à parte — principalmente com Deus. 
+                </p>
+            </div>
+            <div class="img-mochilao fade-in" data-scroll data-scroll-delay="0.1"></div>
+        </section>
+
+        <!-- S-HERO 3 -->
+            <section class="s-hero hero-3" data-scroll-section>
+            <section class="scroll-spacer" data-scroll-section></section>
+            <img src="./assets/imgs/kombi2.png" data-scroll data-scroll-direction="horizontal" 
+            data-scroll-speed="-6" data-scroll-delay="1.5" class="kombi">
+            <img src="./assets/imgs/viajantes.png" data-scroll data-scroll-speed="2" class="viajantes">
+            <img src="./assets/imgs/moeda.png" data-scroll data-scroll-speed="3" class="moeda">
+            <h1>
+                <span data-scroll data-scroll-delay="0.22" 
+                data-scroll-speed="30">C</span>
+                <span data-scroll data-scroll-delay="0.20" 
+                data-scroll-speed="30">o</span>
+                <span data-scroll data-scroll-delay="0.18" 
+                data-scroll-speed="30">m</span>
+                <span data-scroll data-scroll-delay="0.16" 
+                data-scroll-speed="30">u</span>
+                <span data-scroll data-scroll-delay="0.14" 
+                data-scroll-speed="30">n</span>
+                <span data-scroll data-scroll-delay="0.12" 
+                data-scroll-speed="30">i</span>
+                <span data-scroll data-scroll-delay="0.10" 
+                data-scroll-speed="30">d</span>
+                <span data-scroll data-scroll-delay="0.08" 
+                data-scroll-speed="30">a</span>
+                <span data-scroll data-scroll-delay="0.06" 
+                data-scroll-speed="30">d</span>
+                <span data-scroll data-scroll-delay="0.04" 
+                data-scroll-speed="30">e</span>
+            </h1>
+            
+            <div class="conteudo" data-scroll data-scroll-speed="30" data-scroll-delay="0.10" >
+                <p>
+                    Já pensou em se unir a uma comunidade de pessoas apaixonadas por natureza, viajens, empreendedorismo e vontade de viver coisas novas?
+                    É incrível como possuem íntima relação. Viajantes ao redor do mundo todo sofrem por não apenas falta 
+                    de recursos financeiros para dar suporte às suas aventuras, mas como também de encontrarem pessoas com os
+                    mesmos hobbies e coragem para se aliarem em uma jornada juntos. Por meio dessa plataforma, todas essas vontades 
+                    possuem uma resposta; com a troca de idéias entre as pessoas aqui presentes (experientes ou não), você conseguirá perceber que existem
+                    diversas maneiras de viajar gastando menos, bem como também receberá dicas e influências caso queira agir e ter consciência do mercado financeiro
+                    e a forma como ele pode auxiliá-lo, trazendo para si melhor autonomia e independência. Porém, o melhor de tudo será os laços criados com cada membro da nossa família
+                </p>
+            </div>
+            <div class="img-mochilao fade-in" data-scroll data-scroll-delay="0.1"></div>
+        </section>
+    </main>
+    
+    <!-- Ícones -->
+    <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+    <!-- Locomotive scroll -->
+    <script src="js/locomotive-scroll.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Parallax -->
+    <script src="js/parallax.js"></script>
+    <!-- Menu -->
+    <script src="js/hideMenu.js"></script>
+    <!-- Particle -->
+    <script src="js/particleIndex.js"></script>
+</body>
+</html>
+
+
+    

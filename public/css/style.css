@@ -1,0 +1,683 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black'); /* ICA Rubrick Black */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); /* Lato */
+
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after 
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;    
+}
+
+header.header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 16px); /* Para conseguir navegar pela scrollbar */
+    height: 125px;
+    position: fixed;
+    z-index: 2;
+    padding: 10px 50px; /* _ vertical _ horizontal */
+    transition: all .50s ease; /* ease:  começa devagar, acelera no meio e desacelera no final 
+                                all:  TODAS as propriedades que mudarem */
+}
+
+header.header .hamburguer
+{
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.6s;
+}
+
+header.header .hamburguer:hover
+{
+    transform: translateY(-5px); /* Mover para cima */
+    color: #4ab6e4;
+   
+}
+
+header.header ul.menu
+{
+    list-style: none;
+}
+
+header.header ul.menu li
+{
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize; /* Transforma primeira letra de cada palavra em maiúscula*/
+    display: inline-block; /* Inline: elemento em linha; block: permite definir altura e largura*/
+    color: #fff;
+    transition: all 0.6s ease;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
+
+header.header ul.menu li:hover
+{
+    transform: translateY(-5px);
+    color: #5ac8fa; 
+    text-shadow: 0 0 8px 5ac8fa;
+    
+}
+
+header.header ul.menu li:not(:last-child) /* Todos elementos exceto último */
+{
+    margin-right: 35px;
+}
+
+
+header.header .right-content
+{
+    display: flex;
+    align-items: center;
+}
+
+.menu.hidden,
+.social.hidden 
+{
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Impossibilita o mouse de interação com os elementos*/
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu,
+.social
+{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-btn
+{
+    display: inline-block;
+    padding: 9px 24px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .6s ease; 
+    backdrop-filter: blur(4px)
+}
+
+.nav-btn:hover
+{
+    transform: translateY(-5px); /* Mover para cima */
+    border: 2px solid #5ac8fa;
+    color: #5ac8fa;
+    background-color: rgba(90, 200, 250, 0.1);
+    box-shadow: 0 0 5px #5ac8fa;
+
+}
+
+.side
+{
+    position: fixed;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    width: calc(100% - 16px); /* Para conseguir mexer na scrollbar */
+    z-index: 1;
+}
+
+.side ul.social
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%); /* Centralizar verticalmente à tela em relação a si */
+    font-size: 24px;
+}
+
+.side ul.social li
+{
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.6s;
+}
+
+.side ul.social li:hover 
+{
+    transform: translateY(-5px);
+    color: #5ac8fa;
+    text-shadow: 0 0 8px #5ac8fa;
+    
+}
+
+.feature
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature .feature-card
+{
+    text-decoration-thickness: 25%; /* Espessura do sublinhado*/
+    padding: 40px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.feature .feature-card:not(:last-child) 
+{
+    margin-right: 20px;
+}
+
+.feature .feature-card h5
+{
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700; /* Espessura da fonte 100:lighter; 400: normal; 700: bold */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 15px;
+}
+
+.feature .feature-card i /* Ícone */
+{
+    margin-right: 2px;
+    font-size: 16px;
+}
+
+.feature .feature-card p
+{
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 0;
+}
+
+body 
+{
+    background: #050f1a;
+    min-height: 15000px;  /* Bastante altura pra que o scroll e o efeito parallax funcionem */
+    
+}
+
+
+
+.s-initial
+{
+    position: relative; /* as imgs com 'position: absolute;' vão usar essa section como referência de posição. */
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden; /* impede que elementos "vazem"  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s-initial:before /* pseudoelemento, irá aparecer antes do conteúdo da section*/
+{
+    content: ''; /*Ativa o elemento para poder aplicar estilos nele. Sem isso, nada aparece. */ 
+    position: absolute; /*Fora do fluxo do layout */ 
+    bottom: 0; /* Para que fique na parte debaixo da section*/
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #050f1a, transparent);
+    z-index: 10000; /*Coloca a camada acima de tudo */
+}
+
+.s-initial:after
+{
+    content: '';
+    position: absolute;
+    top: 0; /* Define que começará no topo */ 
+    left: 0; /* Define que começará à esquerda */ 
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #050f1a, transparent);
+    z-index: 10000; /* Mesma camada que o before*/
+    mix-blend-mode: color; /* Mistura a cor com os elementos*/
+}
+
+.s-initial img 
+{
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Redimensiona para cobrir toda a área, mantendo a proporção. */
+  pointer-events: none;  /* Não impedirá a interação com outros elementos abaixo dela. */
+}
+
+#texto
+{
+    position: relative;
+    color: #fff;
+    font-size: 8vw;
+    z-index: 2;
+    animation: flicker 2s ease-in-out infinite; /* animação flicker que durará 2s; ease-in-out: começa devagar,
+                                                acelera no meio e termina devagar*/
+}
+
+@keyframes flicker {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(90, 200, 250, 0.4); /* , significa sombras "empilhadas"*/
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(90, 200, 250, 0.3), 0 0 5px rgba(0, 255, 195, 0.3);
+    }
+}
+
+#montanha
+{
+    z-index: 2;
+}
+
+#montanha_direita
+{
+    z-index: 3;
+
+}
+
+#lua
+{   
+    position: absolute;
+    top: 10%;
+    left: 75%;
+    height: 180px;
+    width: 180px;  
+    z-index: 1;
+}
+
+/* ===== S-HERO ===== */
+.s-hero img:not(:last-child)
+{
+    width: 50px;
+    height: 50px;
+    display: block;
+    max-width: 100%;
+}
+
+.s-hero
+{
+    position: relative; /* Para poder mexer na position da img */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    h1 {
+    position: absolute;  
+    display: flex;
+    flex-wrap: wrap;    /* Quebrar linha se preciso */
+
+    /* span é inline por default. Por isso temos que mudar isso para que o efeito das letras apareça */
+    span {
+        
+        color: #fff;
+        font-size: 6rem;
+    }
+    }
+
+}
+
+.s-hero .conteudo
+{
+    width: 45%;
+    text-align: justify;
+    color: #fff;
+}
+
+/* S-HERO 1 */
+.hero-1 
+{
+    
+    justify-content: start;
+
+    img {
+        position: absolute;
+        &.foco { /* & significa o seletor-pai*/
+            top: 20%;
+            left: 30%;
+        }
+        &.camera  {
+            top: 10%;
+            right: 20%;
+        }
+        &.floco {
+            bottom: 15%;
+            left: 25%;
+        }
+    }
+}
+
+.hero-1 h1 
+{
+    position: absolute;
+    height: 80%;
+    width: 45%;
+    top: 10%;
+    left: 0;
+}
+
+
+.hero-1 .conteudo 
+{
+    position: absolute;
+    left: 5%;
+    
+}
+
+.hero-1 .img-camera
+{
+    position: absolute;
+    height: 40%;
+    width: 43%;
+    left: 53%;
+    background-image: url('../assets/imgs/camera_walter.jpg'); 
+    background-size: cover;  /* Redimensiona para caber inteira */
+    background-repeat: no-repeat;
+    background-position: center; /* Alinhada ao centro da div */
+    border-radius: 10%;
+    filter: brightness(1.1) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%); /* Gradiente circular do meio para as bordas
+    até 60% do raio. De 60% até 100% a cor vai mudando de preto para transaprente. Não significa cor preta, mas sim 
+    a opacidade 1 da cor */
+    z-index: 1;
+    overflow: hidden
+}
+
+.hero-1 .conteudo[data-scroll] {
+    transition: transform 0.5s ease-out;
+}
+
+
+/* S-HERO 2 */
+.hero-2 
+{
+    justify-content: end;
+
+    img {
+        position: absolute;
+        &.placeholder {
+            top: 30%;
+            left: 5%;
+        }
+        &.mochila {
+            top: 18%;
+            right: 22%;
+        }
+        &.hitmarker {
+            bottom: 15%;
+            left: 25%;
+        }
+    }
+}
+
+.hero-2 h1 
+{
+    height: 80%;
+    width: 50%;
+    
+}
+
+.hero-2 .conteudo
+{   
+    position: absolute;
+    right: 5%;
+}
+
+.hero-2 .img-mochilao
+{
+    position: absolute;
+    height: 40%;
+    width: 43%;
+    right: 53%; /* Posiciona no centro do elemento pai (banner) */
+    background-image: url('../assets/imgs/mochilao_walter.jpg'); 
+    background-size: cover;  /* Redimensionada para caber inteira */
+    background-repeat: no-repeat;
+    background-position: center; /* Alinhada ao centro da div */
+    border-radius: 10%;
+    filter: brightness(1.1) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    z-index: 1;
+}
+
+/*=====  S-HERO 3 ===== */
+
+.hero-3 
+{
+    justify-content: start;
+
+    img {
+        position: absolute;
+        &.kombi {
+            top: 30%;
+            left: 0%;
+        }
+        &.viajantes {
+            top: 20%;
+            right: 20%;
+        }
+        &.moeda {
+            bottom: 15%;
+            left: 25%;
+        }
+    }
+}
+
+.hero-3 h1 
+{
+    height: 80%;
+    width: 50%;
+    left: 5%;
+    
+}
+
+.hero-3 .conteudo
+{   
+    position: absolute;
+    left: 5%;
+}
+
+.hero-3 .img-mochilao
+{
+    position: absolute;
+    height: 40%;
+    width: 43%;
+    left: 53%;
+    background-image: url('../assets/imgs/comunidade_walter2.jpg'); 
+    background-size: cover;  
+    background-repeat: no-repeat;
+    background-position: center; 
+    border-radius: 10%;
+    filter: brightness(1.0) contrast(1.2) saturate(1.5);
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    z-index: 1;
+}
+
+/* ===== EFEITO IMAGENS ===== */
+.fade-in { /*Começa invisível */
+  opacity: 0;
+  transition: opacity 3s ease-in; /* Começa devagar termina rápido */
+}
+
+.fade-in.is-inview { /* Ao entrar na class inview do Locomotive scroll */
+  opacity: 1;
+}
+
+/* ===== S-TASKS =====  */
+
+.s-tasks
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    h1 {
+        color: #fff;
+        font-size: 6rem;
+    }
+
+
+
+.banner
+{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden; /* Corta os elementos que 'escapam' */
+    position: relative;
+}
+
+.banner .slider
+{
+    position: absolute; /* Move com precisão em relação ao elemento pai (banner) */
+    width: 200px; /* referente às imagens  */
+    height: 200px; /* também referente às imagens */
+    top: 28%;
+    left: calc(50% - 100px); /* Para centralizar (100px equivale a metade de width) */
+    transform-style: preserve-3d; /* 3 dimensões, dando efeito 3D.
+    Em CSS, podemos mover um elemento em 2 direções, tanto no eixo X como Y; entretanto, também podemos dar
+    profundidade a eles: eixo Z */
+    transform: perspective(1000px); /* Distância em relação Z do elemento */
+    animation: autoRun 20s linear infinite; /* 20s para terminar o ciclo; linear: velocidade constante do início ao fim;
+    infinite: animação entra em loop*/
+    z-index: 2;
+}
+
+@keyframes autoRun
+{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg); /* Início da animação */
+    }to{ /* fim da animação */
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg); /* tanto X como Y, traz a visualização de seus ângulos.
+        Sinal - para visualização mais acima  */
+    }
+}
+
+.banner .slider .item
+{
+    position: absolute; /* Para fixar */
+    inset: 0 0 0 0; /* Shortand para top, rigth, bottom e left. Isso resultará tamanho e posição como a classe slider */
+    transform: 
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg)) /*rotateY: Gira cada item em torno do eixo;
+    (position - 1): identifica a posição atual do item (começando em 0);  (360 / quantity): divide a circunferência de 360° de
+    forma igual para os itens; *1deg: faz funcionar o rotateY, declarando a unidade em graus e garantindo que o resultado também seja. */
+    translateZ(550px); /* Para formar a circunferência */
+
+}
+
+.banner .slider .item img
+{
+    width: 100%; /* Igual ao .item */
+    height: 100%; /* Também igual ao .item */
+    border-radius: 20px;
+    object-fit: cover; /* Evitar distorção (preenche completamente o contêiner) */
+    
+}
+
+.content
+{
+    position: absolute; /* Para fixar no banner sem afetar o slider */
+    left: 50%; /* Posiciona no centro do elemento pai (banner) */
+    transform: translateX(-50%); /* Fará o elemento deslocar 50% dele mesmo para a esquerda */
+    width: min(1400px, 100vw); /* Telas > 1400px: elemento = 1400px; Telas < 1400px: 100% da largura da tela */
+    height: 100%; /* Ajuste ao conteúdo */
+    padding-bottom: 100px; /* Distância extra */
+    display: flex;
+    flex-wrap: wrap;    /* Quebrar linha se preciso */
+    justify-content: space-between;
+    align-items: start;
+    z-index: 1;
+}
+
+.content h1
+{
+    font-family: 'ICA Rubrik', sans-serif;
+    font-size: 16em;
+    line-height: 1em;
+    color: #25283B;
+    position: relative;
+}
+
+.content h1::after
+{
+    position: absolute;
+    inset: 0 0 0 0;  /* mesma posição que h1 */
+    content: attr(data-content);  /* Declarando o conteúdo */
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2;  /* Borda */
+    color: transparent;
+}
+
+.content .descricao 
+{
+    font-family: 'Poppins', sans-serif;
+    text-align: right, justify;
+    max-width: 300px;
+    
+}
+
+.content h2
+{
+    font-size: 3em;
+    color: #25283B;
+}
+
+.content p b
+{
+    color: #25283B;
+}
+
+.content p 
+{
+    color: #d2d2d2;
+}
+
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: #050f1a;
+}
+
+.scroll-spacer 
+{
+    height: 300vh;
+    background: transparent;
+}
+
