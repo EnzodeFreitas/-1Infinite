@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,20 @@
     <!-- BOX ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- CSS -->
-     <link rel="stylesheet" href="css/login.css">
-     <!-- Bibliteca particle.js -->
-     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <!-- Bibliteca particle.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-<body>
+
+<body class="page-fade-in">
     <div id="particles-js"></div>
     <div class="form-container">
         <div class="col col-1">
             <div class="image-layer">
                 <img src="./assets/imgs/mochila.png" class="form-image-main">
             </div>
-            <p class="featured-words">Você está a poucos passos de fazer parte da nossa família <span> -1Infinite</span></p>
+            <p class="featured-words">Você está a poucos passos de fazer parte da nossa família <span> -1Infinite</span>
+            </p>
         </div>
 
         <div class="col col-2">
@@ -38,19 +41,19 @@
                         <input type="text" class="input-field" placeholder="E-mail" required>
                         <i class="bx bx-user icon"></i>
                     </div>
-                        <div class="input-box">
-                            <input type="password" class="input-field" placeholder="Senha" required>
-                            <i class="bx bx-lock-alt icon"></i>
-                        </div>
-                        <div class="forgot-pass">
-                            <a href="#">Esqueceu a senha?</a>
-                        </div>
-                        <div class="input-box">
-                            <button class="input-submit">
-                                <span>Entrar</span>
-                                <i class="bx bx-right-arrow-alt"></i>
-                            </button>
-                        </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Senha" required>
+                        <i class="bx bx-lock-alt icon"></i>
+                    </div>
+                    <div class="forgot-pass">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                    <div class="input-box">
+                        <button class="input-submit">
+                            <span>Entrar</span>
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="social-login">
                     <i class="bx bxl-google"></i>
@@ -59,8 +62,8 @@
                 </div>
             </div>
 
-             <!-- Cadastro Container-->
-             <div class="register-form">
+            <!-- Cadastro Container-->
+            <div class="register-form">
                 <div class="form-title">
                     <span>Crie uma conta</span>
                 </div>
@@ -74,23 +77,23 @@
                         <input type="text" class="input-field" placeholder="Nome Completo" required>
                         <i class="bx bx-user icon"></i>
                     </div>
-                        <div class="input-box">
-                            <input type="password" class="input-field" placeholder="Senha" required>
-                            <i class="bx bx-lock-alt icon"></i>
-                        </div>
-                        <div class="input-box">
-                            <input type="password" class="input-field" placeholder="Confirmar senha" required>
-                            <i class="bx bx-lock-alt icon"></i>
-                        </div>
-                        <div class="forgot-pass">
-                            <a href="#">Esqueceu a senha?</a>
-                        </div>
-                        <div class="input-box">
-                            <button class="input-submit">
-                                <span>Cadastrar</span>
-                                <i class="bx bx-right-arrow-alt"></i>
-                            </button>
-                        </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Senha" required>
+                        <i class="bx bx-lock-alt icon"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Confirmar senha" required>
+                        <i class="bx bx-lock-alt icon"></i>
+                    </div>
+                    <div class="forgot-pass">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                    <div class="input-box">
+                        <button class="input-submit">
+                            <span>Cadastrar</span>
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="social-login">
                     <i class="bx bxl-google"></i>
@@ -108,5 +111,28 @@
     <!-- Particle -->
     <script src="js/particleLogin.js"></script>
 </body>
+
 </html>
 
+
+<script>
+    // Transição escurecida para iniciar
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('loaded');
+    });
+
+    /*
+    window = janela do navegador
+    addEventListener = adicionar "ouvinte"
+    DOMContentLoaded = evento disparado quando o DOM (Document Object Model) está pronto
+    para ser manipulado, mas não necessariamente quando todos os recursos externos (como imagens) foram carregados
+    () => { ... } Arrow function (função anônima) será executada assim que o DOMContentLoaded for disparado]
+    
+    classList: É uma propriedade que permite manipular as classes do elemento. Ela oferece métodos como add(), remove(), toggle(), 
+    entre outros, para adicionar ou remover classes CSS de um elemento HTML
+
+    add('loaded'): Este método adiciona a classe 'loaded' ao <body>. Então, assim que a página estiver completamente carregada, a classe 
+    loaded será aplicada ao nele
+
+    */
+</script>

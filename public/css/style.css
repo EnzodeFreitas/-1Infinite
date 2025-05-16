@@ -20,6 +20,7 @@
     box-sizing: border-box;    
 }
 
+
 header.header
 {
     display: flex;
@@ -58,12 +59,18 @@ header.header ul.menu li
 {
     font-size: 16px;
     font-weight: 400;
-    text-transform: capitalize; /* Transforma primeira letra de cada palavra em maiúscula*/
     display: inline-block; /* Inline: elemento em linha; block: permite definir altura e largura*/
     color: #fff;
     transition: all 0.6s ease;
     font-family: 'Lato', sans-serif;
     cursor: pointer;
+}
+
+.menu-item a { /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
+  text-decoration: none;  /* Remove o sublinhado */
+  color: inherit;         /* Herda a cor do elemento pai */
+  display: block;         /* Faz o link ocupar toda a área do li */
+  padding: 10px;          
 }
 
 header.header ul.menu li:hover
@@ -225,8 +232,25 @@ body
     
 }
 
+.page-fade-in
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-out 
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-in.loaded
+{
+    opacity: 1; 
+}
 
 
+/* ===== INITIAL ===== */
 .s-initial
 {
     position: relative; /* as imgs com 'position: absolute;' vão usar essa section como referência de posição. */

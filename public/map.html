@@ -5,24 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interatividade com Mapa</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> <!-- CSS Mapa -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" /> <!-- CSS Ferramentas -->
+    <!-- CSS Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- CSS Ferramentas -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+    <!-- Biblioteca para ícone -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- Bibliteca particle.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="./css/map.css">
     <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
     </style>
 </head>
 
-<body>
-    <div id="map"></div> <!-- O mapa aparece aqui -->
+<body class="page-fade-in">
+    <main data-scroll-container>
+        <!-- Partículas por toda a page -->
+        <div id="particles-js"></div>
+        <!-- HEADER -->
+        <main data-scroll-container>
+            <header class="header">
+                <div class="hamburguer">
+                    <i id="menu-icon" class="bx bx-x" onclick="hideMenu()"></i>
+                </div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> <!-- JS Mapa -->
-    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script> <!-- JS Ferramentas -->
-    <script src="./js/map.js"></script> <!-- JS mapa -->
+                <ul class="menu">
+                    <li class="menu-item"><a href="">Família -1Infinite</a></li>
+                    <li class="menu-item"><a href="map.html">Diário de bordo</a></li>
+                    <li class="menu-item"> <a href="">Chat</a></li>
+                </ul>
 
+                <div class="right-content">
+                    <a href="login.html" class="nav-btn">Entrar</a>
+                    <div id="bx bx-menu" id="menu-icon"></div>
+                </div>
+            </header>
+
+            <!-- SIDE -->
+            <div class="side">
+                <ul class="social">
+                    <li class="social-item"><i class="bx bx-bar-chart-alt-2"></i></li>
+                    <li class="social-item"><i class="bx bx-bell"></i></li>
+                </ul>
+            </div>
+            <section class="s-map">
+                <div class="content" id="map"></div> <!-- O mapa aparece aqui -->
+            </section>
+        </main>
+
+        <!-- JS Leaflet -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <!-- JS Ferramentas -->
+        <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+        <!-- JS Mapa -->
+        <script src="js/map.js"></script>
+        <!-- Particle -->
+        <script src="js/particleIndex.js"></script>
+        <!-- JS Menu -->
+        <script src="js/hideMenu.js"></script>
 </body>
+
 </html>
 
+<script>
 
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('loaded');
+    });
+
+</script>
