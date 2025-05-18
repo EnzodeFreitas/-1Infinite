@@ -6,7 +6,7 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE infinite;
 
 USE aquatech;
 

@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    font-size: 16px; /* rem referencia aqui*/
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #050f1a;
+}
+
+ body {
+  background: #050f1a;
+  color: #f2f2f2;
+} 
+
+.page-fade-in
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-out 
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-in.loaded
+{
+    opacity: 1; 
+}
+
+.container {
+    width: 100%;
+    height: 100dvh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login {
+    width: 100%;
+    max-width: 330px;
+    background-color: #050f1a;
+    border-radius: 10%;
+    padding: 20px;
+    background: transparent;
+}
+
+.login > h2 { /* h2 filho exclusivo do login */
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem; /* Relativo ao elemento raiz*/
+    margin-bottom: 25px;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login__input {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+    
+}
+
+.login__input:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-5px);
+    /* Mover para direita */
+    border: 1px solid #050f1a;
+    color: #050f1a;
+    background-color: rgba(5, 15, 26, 1);
+    box-shadow: 0 0 5px #050f1a;
+}
+
+.login__input:focus {
+    outline: 1px solid #121212;
+}
+
+.login__button 
+{
+    display: inline-block;
+    text-decoration: none;
+    padding: 9px 24px;
+    background-color: transparent;
+    border: 2px solid #21264D;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .6s ease;
+}
+
+.login__button:hover {
+    transform: translateY(-5px);
+    /* Mover para cima */
+    border: 2px solid #21264D;
+    color: #21264D;
+    box-shadow: 0 0 5px #21264D;
+}
+
+.chat {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat__messages {
+    flex-grow: 1; /* Ocupa todo espaço disponível */
+    padding: 30px 30px 90px; /* Limite embaixo para as mensagens não ficarem abaixo do chat__form*/
+    display: flex;
+    flex-direction: column;
+    justify-content:  end;
+
+}
+
+.chat__form {
+    background-color: #191919;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.chat__input {
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    background-color: #212121;
+    outline: none;
+    color: #f2f2f2;
+    font-size: 1rem;
+}
+
+.chat__button {
+    border: none;
+    background: none;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
+.chat__button > span {
+    font-size: 1.8rem;
+}
+
+.chat__messages > div {
+    padding: 10px;
+    width: 100%;
+    max-width: 250px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 22px; /* Altura entre as linhas */
+}
+
+.message--self {
+
+    background-color: #f2f2f2;
+    color: #121212;
+    border-radius: 10px 10px 0px 10px;
+    align-self: end; /* Alinha a si mesmo */
+}
+
+.message--other {
+
+    background-color: #333;
+    color: #f2f2f2;
+    border-radius: 0px 10px 10px 10px;
+    align-self: start; /* Alinha a si mesmo */
+}
+
+.message--sender {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: cadetblue;
+}
+
+
+

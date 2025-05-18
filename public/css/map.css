@@ -1,14 +1,12 @@
-*, 
-*::before, 
-*::after 
-{
+*,
+*::before,
+*::after {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
 }
 
-* 
-{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -16,122 +14,120 @@
 }
 
 
-body
-{
+body {
 
     background-color: #050f1a;
-    overflow: hidden; /* Tirar a scrollbar */
+    overflow: hidden;
+    /* Tirar a scrollbar */
 }
 
-.page-fade-in
-{
+.page-fade-in {
     opacity: 0;
     transition: opacity 3s ease-in;
 }
 
-.page-fade-out 
-{
+.page-fade-out {
     opacity: 0;
     transition: opacity 3s ease-in;
 }
 
-.page-fade-in.loaded
-{
-    opacity: 1; 
+.page-fade-in.loaded {
+    opacity: 1;
 }
 
-header.header
-{
+header.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - 16px); /* Para conseguir navegar pela scrollbar */
+    width: calc(100% - 16px);
+    /* Para conseguir navegar pela scrollbar */
     height: 125px;
     position: fixed;
     z-index: 2;
-    padding: 10px 50px; /* _ vertical _ horizontal */
-    transition: all .50s ease; /* ease:  começa devagar, acelera no meio e desacelera no final 
+    padding: 10px 50px;
+    /* _ vertical _ horizontal */
+    transition: all .50s ease;
+    /* ease:  começa devagar, acelera no meio e desacelera no final 
                                 all:  TODAS as propriedades que mudarem */
 }
 
-header.header .hamburguer
-{
+header.header .hamburguer {
     font-size: 25px;
     color: #fff;
     cursor: pointer;
     transition: all 0.6s;
 }
 
-header.header .hamburguer:hover
-{
-    transform: translateY(-5px); /* Mover para cima */
+header.header .hamburguer:hover {
+    transform: translateY(-5px);
+    /* Mover para cima */
     color: #4ab6e4;
-   
+
 }
 
-header.header ul.menu
-{
+header.header ul.menu {
     list-style: none;
 }
 
-header.header ul.menu li
-{
+header.header ul.menu li {
     font-size: 16px;
     font-weight: 400;
-    display: inline-block; /* Inline: elemento em linha; block: permite definir altura e largura*/
+    display: inline-block;
+    /* Inline: elemento em linha; block: permite definir altura e largura*/
     color: #fff;
     transition: all 0.6s ease;
     font-family: 'Lato', sans-serif;
     cursor: pointer;
 }
 
-.menu-item a 
-{ /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
-  text-decoration: none;  /* Remove o sublinhado */
-  color: inherit;         /* Herda a cor do elemento pai */
-  display: block;         /* Faz o link ocupar toda a área do li */
-  padding: 10px;          
+.menu-item a {
+    /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
+    text-decoration: none;
+    /* Remove o sublinhado */
+    color: inherit;
+    /* Herda a cor do elemento pai */
+    display: block;
+    /* Faz o link ocupar toda a área do li */
+    padding: 10px;
 }
 
-header.header ul.menu li:hover
-{
+header.header ul.menu li:hover {
     transform: translateY(-5px);
-    color: #5ac8fa; 
+    color: #5ac8fa;
     text-shadow: 0 0 8px 5ac8fa;
-    
+
 }
 
-header.header ul.menu li:not(:last-child) /* Todos elementos exceto último */
-{
+header.header ul.menu li:not(:last-child)
+
+/* Todos elementos exceto último */
+    {
     margin-right: 35px;
 }
 
 
-header.header .right-content
-{
+header.header .right-content {
     display: flex;
     align-items: center;
 }
 
 .menu.hidden,
-.social.hidden 
-{
+.social.hidden {
     opacity: 0;
     transform: translateY(-20px);
-    pointer-events: none; /* Impossibilita o mouse de interação com os elementos*/
+    pointer-events: none;
+    /* Impossibilita o mouse de interação com os elementos*/
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .menu,
-.social
-{
+.social {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.nav-btn
-{
+.nav-btn {
     display: inline-block;
     text-decoration: none;
     padding: 9px 24px;
@@ -141,12 +137,12 @@ header.header .right-content
     border-radius: 7px;
     font-size: 15px;
     font-weight: 500;
-    transition: all .6s ease; 
+    transition: all .6s ease;
 }
 
-.nav-btn:hover
-{
-    transform: translateY(-5px); /* Mover para cima */
+.nav-btn:hover {
+    transform: translateY(-5px);
+    /* Mover para cima */
     border: 2px solid #5ac8fa;
     color: #5ac8fa;
     background-color: rgba(90, 200, 250, 0.1);
@@ -154,81 +150,131 @@ header.header .right-content
 
 }
 
-.side
-{
+.side {
     position: fixed;
     color: #fff;
     width: 100%;
     height: 100%;
-    width: calc(100% - 16px); /* Para conseguir mexer na scrollbar */
+    width: calc(100% - 16px);
+    /* Para conseguir mexer na scrollbar */
     z-index: 1;
 }
 
-.side ul.social
-{
+.side ul.social {
     list-style: none;
     padding: 0;
     margin: 0;
     position: fixed;
     top: 50%;
     left: 20px;
-    transform: translateY(-50%); /* Centralizar verticalmente à tela em relação a si */
+    transform: translateY(-50%);
+    /* Centralizar verticalmente à tela em relação a si */
     font-size: 24px;
 }
 
-.side ul.social li
-{
+.side ul.social li {
     padding: 20px;
     cursor: pointer;
     transition: all 0.6s;
 }
 
-.side ul.social li:hover 
-{
+.side ul.social li:hover {
     transform: translateY(-5px);
     color: #5ac8fa;
     text-shadow: 0 0 8px #5ac8fa;
-    
+
 }
 
-.s-map
-{
+.s-map {
     position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-   
+
+
 
 }
 
-.content 
-{
-    position: absolute; /* Para fixar no banner sem afetar o slider */
-    left: 50%; /* Posiciona no centro do elemento pai (banner) */
-    transform: translateX(-50%); /* Fará o elemento deslocar 50% dele mesmo para a esquerda */
-    width: min(1400px, 100vw); /* Telas > 1400px: elemento = 1400px; Telas < 1400px: 100% da largura da tela */
-    height: 100%; /* Ajuste ao conteúdo */
+.content {
+    position: absolute;
+    /* Para fixar no banner sem afetar o slider */
+    left: 50%;
+    /* Posiciona no centro do elemento pai (banner) */
+    transform: translateX(-50%);
+    /* Fará o elemento deslocar 50% dele mesmo para a esquerda */
+    width: min(1400px, 100vw);
+    /* Telas > 1400px: elemento = 1400px; Telas < 1400px: 100% da largura da tela */
+    height: 100%;
+    /* Ajuste ao conteúdo */
     display: flex;
     align-items: start;
-    
-    
-   
+
+
+
 }
 
-#map 
-{
+#map {
     height: 600px;
     width: 90%;
     border-radius: 7%;
     filter: brightness(1.0) contrast(1.2) saturate(1.5);
-    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
     /* filter: invert(1) hue-rotate(180deg) saturate(1.3) contrast(1.2); */
-    z-index: 1;
+    z-index: 4;
+}
 
-    
+.search {
+    position: absolute;
+    bottom: 5%;
+    z-index: 3;
+}
+
+.search input {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search input:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+    /* Mover para direita */
+    border: 2px solid #5ac8fa;
+    color: #5ac8fa;
+    background-color: rgba(90, 200, 250, 0.1);
+    box-shadow: 0 0 5px #5ac8fa;
+}
+
+
+.search button {
+    display: inline-block;
+    padding: 9px 20px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .6s ease;
+    backdrop-filter: blur(4px)
+}
+
+.search button:hover {
+    transform: translateX(5px);
+    /* Mover para direita */
+    border: 2px solid #5ac8fa;
+    color: #5ac8fa;
+    background-color: rgba(90, 200, 250, 0.1);
+    box-shadow: 0 0 5px #5ac8fa;
+
 }
 
 #particles-js {
@@ -240,9 +286,3 @@ header.header .right-content
     z-index: 0;
     background: #050f1a;
 }
-
-
-
-
-
-

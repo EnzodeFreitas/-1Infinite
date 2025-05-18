@@ -31,13 +31,13 @@
                 </div>
 
                 <ul class="menu">
-                    <li class="menu-item"><a href="">Família -1Infinite</a></li>
+                    <li class="menu-item"><a href="index.html">Família -1Infinite</a></li>
                     <li class="menu-item"><a href="map.html">Diário de bordo</a></li>
-                    <li class="menu-item"> <a href="">Chat</a></li>
+                    <li class="menu-item"> <a href="chat.html">Chat</a></li>
                 </ul>
 
                 <div class="right-content">
-                    <a href="login.html" class="nav-btn">Entrar</a>
+                    <a href="login.html" class="nav-btn">Salvar</a>
                     <div id="bx bx-menu" id="menu-icon"></div>
                 </div>
             </header>
@@ -50,6 +50,11 @@
                 </ul>
             </div>
             <section class="s-map">
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Nome ou coordenadas">
+                    <br> <br>
+                    <button onclick="buscarLocalizacao()">Buscar</button>
+                </div>
                 <div class="content" id="map"></div> <!-- O mapa aparece aqui -->
             </section>
         </main>
@@ -64,6 +69,8 @@
         <script src="js/particleIndex.js"></script>
         <!-- JS Menu -->
         <script src="js/hideMenu.js"></script>
+        <!-- JS Menu -->
+        <script src="js/searchLocal.js"></script>
 </body>
 
 </html>
