@@ -80,7 +80,8 @@ header.header ul.menu li {
     cursor: pointer;
 }
 
-.menu-item a {
+.menu-item a,
+.social-item a {
     /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
     text-decoration: none;
     /* Remove o sublinhado */

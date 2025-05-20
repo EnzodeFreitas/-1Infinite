@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-y: auto;
+  background-color: #050f1a;
+}
+
+.page-fade-in
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-out 
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-in.loaded
+{
+    opacity: 1; 
+}
+
+
+header.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 16px);
+  height: 125px;
+  position: fixed;
+  z-index: 2;
+  padding: 10px 50px;
+  transition: all .50s ease;
+}
+
+header.header .hamburguer {
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+header.header .hamburguer:hover {
+  transform: translateY(-5px);
+  color: #4ab6e4;
+}
+
+header.header ul.menu {
+  list-style: none;
+}
+
+header.header ul.menu li {
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-block;
+  color: #fff;
+  transition: all 0.6s ease;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 10px;
+}
+
+header.header ul.menu li:hover {
+  transform: translateY(-5px);
+  color: #5ac8fa;
+  text-shadow: 0 0 8px 5ac8fa;
+}
+
+header.header ul.menu li:not(:last-child) {
+  margin-right: 35px;
+}
+
+header.header .right-content {
+  display: flex;
+  align-items: center;
+}
+
+.menu.hidden,
+.social.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu,
+.social {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 9px 24px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all .6s ease;
+  backdrop-filter: blur(4px)
+}
+
+.nav-btn:hover {
+  transform: translateY(-5px);
+  border: 2px solid #5ac8fa;
+  color: #5ac8fa;
+  background-color: rgba(90, 200, 250, 0.1);
+  box-shadow: 0 0 5px #5ac8fa;
+}
+
+.s-content {
+  width: 100%;
+  min-height: 200vh;
+  padding: 100px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  text-align: justify;
+  gap: 40px;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  gap: 30px;
+}
+
+#p1, #p2 {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.img-family {
+  width: 100%;
+  height: 650px;
+  background-image: url('../assets/imgs/MamisEnzo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  filter: brightness(0.5) contrast(1.2) saturate(1.5);
+  mask-image: radial-gradient(circle, black 60%, transparent 100%);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 3s ease-in;
+}
+
+.fade-in.is-inview {
+  opacity: 1;
+}
+
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: #050f1a;
+}
