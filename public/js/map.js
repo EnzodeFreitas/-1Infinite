@@ -62,6 +62,52 @@ var drawnItems = new L.FeatureGroup(); /*  Agrupa e gerencia vários objetos geo
                                            Resumo: Caixa para todas as formas desenahdas no mapa*/
 map.addLayer(drawnItems);
 
+// Dados das rotas por faixa de distância
+let dadosRotas = [0, 0, 0, 0, 0]; // 0–1km, 1–2km, ..., 4–5km
+
+// Cálculo da distância de uma rota (Polyline)
+function calcularDistancia(rota) {
+    let distancia = 0;
+    const pontos = rota.getLatLngs();
+    for (let i = 0; i < pontos.length - 1; i++) {
+        distancia += pontos[i].distanceTo(pontos[i + 1]) / 1000; // metros → km
+    }
+    return distancia;
+}
+
+// Processa as rotas desenhadas e atualiza o gráfico
+function processarDistanciasEDesenharGrafico() {
+    dadosRotas = [0, 0, 0, 0, 0]; // vai zerar antes de recalcular
+
+    drawnItems.eachLayer(function (layer) {
+        if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) {
+            const distancia = calcularDistancia(layer);
+
+            if (distancia <= 1) {
+                dadosRotas[0]++;
+            } else if (distancia <= 2) {
+                dadosRotas[1]++;
+            } else if (distancia <= 3) {
+                dadosRotas[2]++;
+            } else if (distancia <= 4) {
+                dadosRotas[3]++;
+            } else if (distancia <= 5) {
+                dadosRotas[4]++;
+            }
+        }
+    });
+
+    // Atualiza os dados no gráfico
+    myChart.data.datasets[0].data = dadosRotas;
+    myChart.update();
+
+    alert("Gráfico de rotas atualizado com sucesso!");
+}
+
+// Evento do "Botão" <a>
+
+
+
 // Controles para desenhar no mapa (rotas e formas)
 var drawControl = new L.Control.Draw({ /* L.Control.Draw é um controle de interface de usuário que irá 
                                            adicionar as ferrementas interativas no mapa e permitir ao usuário
@@ -195,3 +241,4 @@ map.on('draw:deleted', function (e) {
     });
 });
 
+document.getElementById('btnSalvarDistancias').addEventListener('click', processarDistanciasEDesenharGrafico);

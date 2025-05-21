@@ -1,5 +1,4 @@
 function hideMenuJornada() {
-    var menu = document.querySelector(".menu");
     var menuIcon = document.getElementById("menu-icon");
     menu.classList.toggle("hidden");
 

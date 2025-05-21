@@ -1,13 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); /* Lato */
+
 body {
     background-color: #050f1a;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    font-family: 'Poppins', sans-serif;
 }
 
-#particles-js
+.page-fade-in
 {
-    position: absolute;
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-out 
+{
+    opacity: 0;
+    transition: opacity 3s ease-in;
+}
+
+.page-fade-in.loaded
+{
+    opacity: 1; 
+}
+
+
+header.header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 16px); /* Para conseguir navegar pela scrollbar */
+    height: 125px;
+    position: fixed;
+    z-index: 2;
+    padding: 10px 50px; /* _ vertical _ horizontal */
+    transition: all .50s ease; /* ease:  começa devagar, acelera no meio e desacelera no final 
+                                all:  TODAS as propriedades que mudarem */
+}
+
+.social-item a { /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
+  text-decoration: none;  /* Remove o sublinhado */
+  color: inherit;         /* Herda a cor do elemento pai */
+  display: block;         /* Faz o link ocupar toda a área do li */
+  padding: 10px;          
+}
+
+
+header.header
+{
     top: 0;
-    left: 0;
+    padding: 20px;
+    margin: 0;
+    left: 20px;
+}
+
+.social.hidden 
+{
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Impossibilita o mouse de interação com os elementos*/
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.social
+{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+
+
+.side
+{
+    position: fixed;
+    color: #fff;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    width: calc(100% - 16px); /* Para conseguir mexer na scrollbar */
+    z-index: 1;
 }
+
+.side ul.social
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%); /* Centralizar verticalmente à tela em relação a si */
+    font-size: 24px;
+}
+
+.side ul.social li
+{
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.6s;
+}
+
+.side ul.social li:hover 
+{
+    transform: translateY(-5px);
+    color: #5ac8fa;
+    text-shadow: 0 0 8px #5ac8fa;
+    
+}
+
+
+
+.titulo-principal {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.graficos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Para ficar responsivo em telas menores */
+}
+
+canvas {
+    height: 40vh;
+    width: 40vw;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grafico-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kpi {
+    background-color: #ffffff;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+
+

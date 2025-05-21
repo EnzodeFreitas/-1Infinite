@@ -1,21 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard | -1Infinite</title>
     <!-- Biblioteca para ícone -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- Bibliteca particle.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- CSS principal -->
     <link rel="stylesheet" href="./css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-        <!-- Partículas por toda a page -->
-        <div id="particles-js"></div>
 
-        <!-- Particle -->
-        <script src="../js/particleIndex.js"></script>
+<body class="page-fade-in">
+        <!-- SIDE -->
+        <div class="side">
+            <ul class="social">
+                 <li class="social-item"><a href="../map.html"><i class="bx bx-arrow-back"></i></a></li>
+             
+            </ul>
+        </div>
+    <h1 class="titulo-principal">Análise das Rotas e Ferramentas Utilizadas</h1>
+    <div class="graficos">
+        <div class="grafico-container">
+            <div class="kpi">
+                <span>🌍 Total de rotas: <strong>26</strong></span>
+            </div>
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="grafico-container">
+            <div class="kpi">
+                <span>📍 Ferramenta Mais Usada: <strong>Retângulo</strong></span>
+            </div>
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // SETUP 
+        // LABELS FIXOS PARA CADA HORÁRIO
+
+        // GRÁFICO LINHAS - QUANTIDADE DE ROTAS POR FAIXA DE DISTÂNCIA
+        const labels = ['0–1 km', '1–2 km', '2–3 km', '3–4 km', '4–5 km'];
+
+        // GRÁFICO BARRAS X FERRAMENTAS
+        const labels2 = ['Rota', 'Polígono criativo', 'Retângulo', 'Circunferência', 'Marcador', 'Marcador em Área'];
+
+        // DADOS FIXOS
+        // GRÁFICO LINHAS
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    // Dados da quantidade de rotas
+                    label: 'Quantidade de Rotas',
+                    data: [5, 12, 9, 3, 1], // Número de rotas que caíram em cada faixa de distância
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.5)',
+                    yAxisID: 'y',
+                    tension: 0.3
+                }
+            ]
+        };
+
+        // GRÁFICO BARRAS
+        const data2 = {
+            labels: labels2,
+            datasets: [
+                {
+                    // Dados da quantidade de ferramentas
+                    label: 'Quantidade',
+                    data: [22, 24, 27, 23, 20, 18],
+                    borderColor: 'red',
+                    borderWidth: 2.5,
+                    backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                    yAxisID: 'y',
+                    tension: 0
+                },
+            ]
+        };
+
+        // CONFIG - GRÁFICO LINHAS
+        const config = {
+            type: 'line', // Tipo de gráfico: linha
+            data: data, // Dados a serem exibidos
+            options: {
+                responsive: true, // Faz o gráfico se ajustar ao tamanho da tela
+                interaction: {
+                    mode: 'index', // Interação no gráfico em modo índice
+                    intersect: false, // Não precisa intersectar as linhas
+                },
+                stacked: false, // Não permitir que as linhas fiquem empilhadas
+                plugins: {
+                    title: {
+                        display: true, // Exibe o título
+                        text: 'Número de Rotas por Faixa de Distância' // Texto do título
+                    }
+                },
+                scales: {
+                    // === EIXO X ===
+                    x: {
+                        title: {
+                            display: true, // Exibe o título do eixo X
+                            text: 'Faixa de Distância (km)' // Texto do título
+                        }
+                    },
+                    // === EIXO Y ===
+                    y: {
+                        type: 'linear', // Tipo do eixo Y: linear (numérico)
+                        display: true, // Exibe o eixo Y
+                        position: 'left', // Posição do eixo  
+                        min: 0, // Valor mínimo 
+                        max: 15, // Valor máximo
+                        ticks: {
+                            stepSize: 3 // Define o tamanho do incremento (0, 3, 6...)
+                        },
+                        title: {
+                            display: true, // Exibe o título do eixo 
+                            text: 'Quantidade de rotas'
+                        }
+                    },
+                }
+            },
+        };
+
+        // CONFIG - GRÁFICO DE BARRAS
+        const config2 = {
+            type: 'bar', // Gráfico de barras
+            data: data2,
+            options: {
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Ferramentas utilizadas'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Formas'
+                        }
+                    },
+                    y: { // ===== Y FERRAMENTAS =====//
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        min: 0,
+                        max: 40,
+                        ticks: {
+                            stepSize: 5
+                        },
+                        title: {
+                            display: true,
+                            text: 'Quantidade'
+                        }
+                    },
+                }
+            }
+        };
+
+        // CRIANDO O GRÁFICO DE LINHAS
+        const myChart = new Chart(
+            document.getElementById('myChart'), // O canvas onde o gráfico será desenhado
+            config // A configuração do gráfico de linha
+        );
+
+        // CRIANDO O GRÁFICO DE BARRAS
+        const myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config2
+        );
+    </script>
+
 </body>
 </html>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('loaded');
+    });
+</script>
