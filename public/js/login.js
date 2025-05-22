@@ -55,7 +55,7 @@ btn_cadastro.addEventListener('click', () => {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+        
 
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -64,15 +64,15 @@ btn_cadastro.addEventListener('click', () => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+          // limparFormulario();
+          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        console.log(`ERRO: ${resposta}`);
+        // finalizarAguardar();
       });
 
     return false;
