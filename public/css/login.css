@@ -50,6 +50,7 @@ body
     border-radius: 30px;
     backdrop-filter: blur(20px);
     overflow: hidden; /* Para login não vazar do container */
+    position: absolute;
 }
 
 /* ===== 1a Coluna ===== */
@@ -306,4 +307,73 @@ body
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+
+.social-item a {
+    /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
+    text-decoration: none;
+    /* Remove o sublinhado */
+    color: inherit;
+    /* Herda a cor do elemento pai */
+    display: block;
+    /* Faz o link ocupar toda a área do li */
+    padding: 10px;
+}
+
+
+header.header {
+    top: 0;
+    padding: 20px;
+    margin: 0;
+    left: 20px;
+}
+
+.social.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    /* Impossibilita o mouse de interação com os elementos*/
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.social {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    
+}
+
+.side {
+    color: #fff;
+    width: 40px;
+    height: 100%;
+    /* Para conseguir mexer na scrollbar */
+    z-index: 1;
+
+}
+
+.side ul.social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    /* Centralizar verticalmente à tela em relação a si */
+    font-size: 24px;
+    
+}
+
+.side ul.social li {
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.6s;
+}
+
+.side ul.social li:hover {
+    transform: translateY(-5px);
+    color: #5ac8fa;
+    text-shadow: 0 0 8px #5ac8fa;
+
 }
