@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar Heatmap estilo GitHub - Dinâmico</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .day {
+      shape-rendering: crispEdges;
+    }
+
+    .month {
+      fill: none;
+      stroke: #aaa;
+      stroke-width: 1px;
+    }
+
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 4px;
+      font-size: 12px;
+      pointer-events: none;
+    }
+
+    .day-label {
+      font-size: 10px;
+      fill: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Calendar Heatmap (estilo GitHub) - Dinâmico</h2>
+  <div id="heatmap"></div>
+
+  <script>
+   // --- Configurações heatmap ---
+  const width = 1000;
+  const height = 150;
+  const cellSize = 17;
+  const year = new Date().getFullYear();
+
+  const svg = d3.select("#heatmap")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  const color = d3.scaleQuantize()
+    .domain([0, 10])
+    .range(["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]);
+
+  const formatDate = d3.timeFormat("%Y-%m-%d");
+
+  const tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  const g = svg.append("g")
+    .attr("transform", "translate(40,20)");
+
+  // Dias da semana
+  const dayLabels = ["D", "S", "T", "Q", "Q", "S", "S"];
+  g.selectAll(".day-label")
+    .data(dayLabels)
+    .join("text")
+    .attr("class", "day-label")
+    .attr("x", -5)
+    .attr("y", (d, i) => i * cellSize + 12)
+    .attr("text-anchor", "end")
+    .text(d => d);
+
+  // Meses
+  g.selectAll(".month")
+    .data(d3.timeMonths(new Date(year, 0, 1), new Date(year + 1, 0, 1)))
+    .join("text")
+    .attr("x", d => d3.timeWeek.count(d3.timeYear(d), d) * cellSize)
+    .attr("y", -5)
+    .text(d3.timeFormat("%b"));
+
+  // Inicializa os dados do heatmap para o ano todo, valor 0
+  window.heatmapData = d3.timeDays(new Date(year, 0, 1), new Date(year + 1, 0, 1))
+    .map(d => ({ date: d, value: 0 }));
+
+  // Renderiza os quadrados (só 1 vez)
+  function renderHeatmap() {
+    g.selectAll("rect.day")
+      .data(window.heatmapData, d => formatDate(d.date))
+      .join("rect")
+      .attr("class", "day")
+      .attr("width", cellSize)
+      .attr("height", cellSize)
+      .attr("x", d => d3.timeWeek.count(d3.timeYear(d.date), d.date) * cellSize)
+      .attr("y", d => d.date.getDay() * cellSize)
+      .attr("fill", d => color(d.value))
+      .on("mouseover", (event, d) => {
+        tooltip.transition().duration(200).style("opacity", 0.9);
+        tooltip.html(`${formatDate(d.date)}<br/>${d.value} atividades`)
+          .style("left", (event.pageX + 10) + "px")
+          .style("top", (event.pageY - 20) + "px");
+      })
+      .on("mouseout", () => {
+        tooltip.transition().duration(500).style("opacity", 0);
+      });
+  }
+
+  renderHeatmap();
+
+  // Objeto que armazena quantas atividades tem por data (string YYYY-MM-DD)
+  const userActivityByDate = {};
+
+  // Função para atualizar as cores do heatmap com base em userActivityByDate
+  function updateHeatmap() {
+    // Atualiza os valores no array heatmapData
+    window.heatmapData.forEach(d => {
+      const dateStr = formatDate(d.date);
+      d.value = userActivityByDate[dateStr] || 0;
+    });
+
+    // Atualiza os retângulos visualmente
+    d3.selectAll("rect.day")
+      .data(window.heatmapData, d => formatDate(d.date))
+      .transition()
+      .duration(300)
+      .attr("fill", d => color(d.value));
+  }
+
+  // Exemplo: ligação com evento do mapa Leaflet (parte que você já tem)
+
+  map.on('draw:created', function (event) {
+    const layer = event.layer;
+    drawnItems.addLayer(layer);
+
+    const today = formatDate(new Date());
+    userActivityByDate[today] = (userActivityByDate[today] || 0) + 1;
+
+    updateHeatmap();
+
+    // restante do seu código do popup...
+  });
+
+  map.on('draw:edited', function (e) {
+    // Exemplo simples: para edição, você pode fazer recalculo real. Aqui só chama updateHeatmap para efeito.
+    updateHeatmap();
+  });
+
+  map.on('draw:deleted', function (e) {
+    // Exemplo simples: diminuir a contagem das datas afetadas, aqui você pode adaptar.
+    // Por simplicidade, vamos resetar tudo e recalcular contagem baseado nas layers restantes.
+
+    // Limpa contagem
+    Object.keys(userActivityByDate).forEach(k => userActivityByDate[k] = 0);
+
+    // Percorre todas as layers e atualiza userActivityByDate conforme a data atual (pode ajustar sua lógica)
+    drawnItems.eachLayer(layer => {
+      // Aqui você pode melhorar pegando a data correta associada a cada layer
+      // Por exemplo: supor que a data do evento foi sempre hoje (exemplo simples)
+      const dateStr = formatDate(new Date());
+      userActivityByDate[dateStr] = (userActivityByDate[dateStr] || 0) + 1;
+    });
+
+    updateHeatmap();
+  });
+  </script>
+</body>
+
+</html>

@@ -1,141 +1,170 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap"); /* Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap'); /* Lato */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap");
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* Lato */
 
 body {
     background-color: #050f1a;
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;  
+    align-items: center;
     font-family: 'Poppins', sans-serif;
 }
 
-.page-fade-in
-{
+.page-fade-in {
     opacity: 0;
     transition: opacity 3s ease-in;
 }
 
-.page-fade-out 
-{
+.page-fade-out {
     opacity: 0;
     transition: opacity 3s ease-in;
 }
 
-.page-fade-in.loaded
-{
-    opacity: 1; 
+.page-fade-in.loaded {
+    opacity: 1;
 }
 
 
-header.header
-{
+header.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - 16px); /* Para conseguir navegar pela scrollbar */
+    width: calc(100% - 16px);
+    /* Para conseguir navegar pela scrollbar */
     height: 125px;
     position: fixed;
     z-index: 2;
-    padding: 10px 50px; /* _ vertical _ horizontal */
-    transition: all .50s ease; /* ease:  começa devagar, acelera no meio e desacelera no final 
+    padding: 10px 50px;
+    /* _ vertical _ horizontal */
+    transition: all .50s ease;
+    /* ease:  começa devagar, acelera no meio e desacelera no final 
                                 all:  TODAS as propriedades que mudarem */
 }
 
-.social-item a { /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
-  text-decoration: none;  /* Remove o sublinhado */
-  color: inherit;         /* Herda a cor do elemento pai */
-  display: block;         /* Faz o link ocupar toda a área do li */
-  padding: 10px;          
+.social-item a {
+    /* Sem isso os itens da navbar ficariam com a estilziação da tag <a>, por isso a remoção */
+    text-decoration: none;
+    /* Remove o sublinhado */
+    color: inherit;
+    /* Herda a cor do elemento pai */
+    display: block;
+    /* Faz o link ocupar toda a área do li */
+    padding: 10px;
 }
 
 
-header.header
-{
+header.header {
     top: 0;
     padding: 20px;
     margin: 0;
     left: 20px;
 }
 
-.social.hidden 
-{
+.social.hidden {
     opacity: 0;
     transform: translateY(-20px);
-    pointer-events: none; /* Impossibilita o mouse de interação com os elementos*/
+    pointer-events: none;
+    /* Impossibilita o mouse de interação com os elementos*/
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.social
-{
+.social {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-
-
-.side
-{
-    position: fixed;
+.side {
     color: #fff;
     width: 100%;
     height: 100%;
-    width: calc(100% - 16px); /* Para conseguir mexer na scrollbar */
+    width: calc(100% - 16px);
+    /* Para conseguir mexer na scrollbar */
     z-index: 1;
 }
 
-.side ul.social
-{
+.side ul.social {
     list-style: none;
     padding: 0;
     margin: 0;
     position: fixed;
     top: 50%;
     left: 20px;
-    transform: translateY(-50%); /* Centralizar verticalmente à tela em relação a si */
+    transform: translateY(-50%);
+    /* Centralizar verticalmente à tela em relação a si */
     font-size: 24px;
 }
 
-.side ul.social li
-{
+.side ul.social li {
     padding: 20px;
     cursor: pointer;
     transition: all 0.6s;
 }
 
-.side ul.social li:hover 
-{
+.side ul.social li:hover {
     transform: translateY(-5px);
     color: #5ac8fa;
     text-shadow: 0 0 8px #5ac8fa;
-    
+
 }
 
 
 
 .titulo-principal {
+    margin-top: 40px;
+    /* ou o quanto quiser para afastar do topo */
     text-align: center;
     font-size: 2rem;
     margin-top: 20px;
     margin-bottom: 40px;
     color: white;
+    font-weight: 700;
+
 }
+
+.separator {
+    width: 75%;
+    height: 4px;
+    background: linear-gradient(90deg, blue, red);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7), 0 0 8px rgba(0, 0, 255, 0.7);
+    margin: 0 auto 40px auto;
+    border-radius: 2px;
+    animation: gentleExpand 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes gentleExpand {
+
+    0%,
+    100% {
+        transform: scaleX(1); /* Largura normal */
+    }
+            /* No início e final, possui largura igual ao original. Apenas no meio da animação (50%), há alteração */
+    50% {
+        transform: scaleX(1.04); /* Apenas 4% */
+    }
+}
+
+
+
 
 .graficos {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    flex-wrap: wrap; /* Para ficar responsivo em telas menores */
+    flex-wrap: wrap;
+    /* Para ficar responsivo em telas menores */
+    max-width: 1200px;
+    margin: 100px auto 0 auto;
+    /* <top> <right> <bottom> <left> */
 }
 
 canvas {
     height: 40vh;
-    width: 40vw;
+    width: 100%;
+    max-width: 500px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -143,7 +172,11 @@ canvas {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .grafico-container {
+    position: relative;
+    flex: 0 1 45%;
+    /* Ocupa até 45% da largura do container para forçar a quebra*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,5 +193,36 @@ canvas {
     font-size: 0.95rem;
 }
 
+#cal-heatmap {
+    width: 100px;
+    max-width: 500px;
+    margin-top: 10px;
+    height: 40vh;
+}
 
+/* ===== HEATMAP =====*/
+svg {
+    font-family: sans-serif;
+}
 
+.day-label {
+    font-size: 10px;
+    fill: #555;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 5px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    pointer-events: none;
+    font-size: 12px;
+    z-index: 9999;
+}
+
+.month-label {
+    fill: #555;
+    font-weight: bold;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa com Heatmap de Atividades</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+  <style>
+    #map { height: 400px; }
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 5px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      pointer-events: none;
+      font-size: 12px;
+    }
+    svg { font-family: sans-serif; }
+    .day-label { font-size: 10px; fill: #555; }
+  </style>
+</head>
+<body>
+
+<h2>Mapa + Heatmap de Atividades</h2>
+<div id="map"></div>
+<div id="heatmap"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<script>
+  // === Mapa Leaflet ===
+  const map = L.map('map').setView([-15.8, -47.9], 4); // Brasil
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  const drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
+  const drawControl = new L.Control.Draw({
+    edit: { featureGroup: drawnItems }
+  });
+  map.addControl(drawControl);
+
+  // === Heatmap ===
+  const width = 1000;
+  const height = 150;
+  const cellSize = 17;
+  const year = new Date().getFullYear();
+  const formatDate = d3.timeFormat("%Y-%m-%d");
+
+  const svg = d3.select("#heatmap")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  const g = svg.append("g").attr("transform", "translate(40,20)");
+
+  const color = d3.scaleQuantize()
+    .domain([0, 10])
+    .range(["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]);
+
+  const tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  // Labels dos dias
+  const dayLabels = ["D", "S", "T", "Q", "Q", "S", "S"];
+  g.selectAll(".day-label")
+    .data(dayLabels)
+    .join("text")
+    .attr("class", "day-label")
+    .attr("x", -5)
+    .attr("y", (d, i) => i * cellSize + 12)
+    .attr("text-anchor", "end")
+    .text(d => d);
+
+  // Labels dos meses
+  g.selectAll(".month")
+    .data(d3.timeMonths(new Date(year, 0, 1), new Date(year + 1, 0, 1)))
+    .join("text")
+    .attr("x", d => d3.timeWeek.count(d3.timeYear(d), d) * cellSize)
+    .attr("y", -5)
+    .text(d3.timeFormat("%b"));
+
+  // Dados do heatmap
+  const heatmapData = d3.timeDays(new Date(year, 0, 1), new Date(year + 1, 0, 1))
+    .map(d => ({ date: d, value: 0 }));
+
+  const userActivityByDate = {};
+
+  function renderHeatmap() {
+    g.selectAll("rect.day")
+      .data(heatmapData, d => formatDate(d.date))
+      .join(
+        enter => enter.append("rect")
+          .attr("class", "day")
+          .attr("width", cellSize)
+          .attr("height", cellSize)
+          .attr("x", d => d3.timeWeek.count(d3.timeYear(d.date), d.date) * cellSize)
+          .attr("y", d => d.date.getDay() * cellSize)
+          .attr("fill", d => color(d.value))
+          .on("mouseover", (event, d) => {
+            tooltip.transition().duration(200).style("opacity", 0.9);
+            tooltip.html(`${formatDate(d.date)}<br/>${d.value} atividades`)
+              .style("left", (event.pageX + 10) + "px")
+              .style("top", (event.pageY - 20) + "px");
+          })
+          .on("mouseout", () => {
+            tooltip.transition().duration(500).style("opacity", 0);
+          }),
+        update => update
+          .transition()
+          .duration(300)
+          .attr("fill", d => color(d.value))
+      );
+  }
+
+  function updateHeatmap() {
+    heatmapData.forEach(d => {
+      const dateStr = formatDate(d.date);
+      d.value = userActivityByDate[dateStr] || 0;
+    });
+    renderHeatmap();
+  }
+
+  // Eventos do Leaflet Draw
+  map.on('draw:created', function (event) {
+    const today = formatDate(new Date());
+    drawnItems.addLayer(event.layer);
+    userActivityByDate[today] = (userActivityByDate[today] || 0) + 1;
+    updateHeatmap();
+  });
+
+  map.on('draw:deleted', function () {
+    // Zera e recalcula
+    Object.keys(userActivityByDate).forEach(k => userActivityByDate[k] = 0);
+
+    drawnItems.eachLayer(() => {
+      const today = formatDate(new Date());
+      userActivityByDate[today] = (userActivityByDate[today] || 0) + 1;
+    });
+
+    updateHeatmap();
+  });
+
+  map.on('draw:edited', function () {
+    updateHeatmap(); // Simplesmente reatualiza
+  });
+
+  // Inicial
+  renderHeatmap();
+</script>
+
+</body>
+</html>

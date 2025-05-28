@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calendar Heatmap</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  svg {
+    font-family: sans-serif;
+  }
+  rect.day {
+    stroke: #ccc;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h2>Calendar Heatmap</h2>
+<svg width="960" height="136"></svg>
+
+<script>
+const svg = d3.select("svg");
+const width = +svg.attr("width");
+const height = +svg.attr("height");
+const cellSize = 17; // tamanho dos quadrados
+
+const formatDate = d3.timeFormat("%Y-%m-%d");
+const parseDate = d3.timeParse("%Y-%m-%d");
+
+// Gera um array de datas para um ano (ex: 2025)
+const year = new Date().getFullYear();
+const startDate = new Date(year, 0, 1);
+const endDate = new Date(year, 11, 31);
+
+let dates = d3.timeDays(startDate, endDate);
+
+window.heatmapData = dates.map(date => ({ date: date, value: 0 }));
+
+// Função de cor (ex: escala de azul claro para escuro)
+const color = d3.scaleSequential(d3.interpolateBlues)
+  .domain([0, 5]); // Ajuste máximo conforme sua necessidade
+
+function drawHeatmap() {
+  const dayRects = svg.selectAll("rect.day")
+    .data(window.heatmapData, d => formatDate(d.date));
+
+  dayRects.enter()
+    .append("rect")
+    .attr("class", "day")
+    .attr("width", cellSize)
+    .attr("height", cellSize)
+    .attr("x", d => d3.timeWeek.count(d3.timeYear(d.date), d.date) * cellSize)
+    .attr("y", d => d.date.getDay() * cellSize)
+    .attr("fill", d => color(d.value))
+    .append("title")
+    .text(d => `${formatDate(d.date)}: ${d.value}`);
+
+  dayRects
+    .attr("fill", d => color(d.value))
+    .select("title")
+    .text(d => `${formatDate(d.date)}: ${d.value}`);
+
+  dayRects.exit().remove();
+}
+
+function updateHeatmap() {
+  // Busca os dados do localStorage
+  const storedActivity = JSON.parse(localStorage.getItem('userActivityByDate')) || {};
+
+  window.heatmapData.forEach(d => {
+    const dateStr = formatDate(d.date);
+    d.value = storedActivity[dateStr] || 0;
+  });
+
+  drawHeatmap();
+}
+
+// Atualiza ao carregar a página
+updateHeatmap();
+
+// Atualiza em tempo real se localStorage mudar em outra aba
+window.addEventListener('storage', event => {
+  if (event.key === 'userActivityByDate') {
+    updateHeatmap();
+  }
+});
+</script>
+
+</body>
+</html>
