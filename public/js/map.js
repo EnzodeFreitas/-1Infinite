@@ -141,73 +141,20 @@ map.on('click', function (e) {
         .openOn(map);
 });
 
-// Escuta o evento draw:created que no momento que termina de desenhar algo no mapa
+// Escuta o evento draw:created  no momento que termina de desenhar algo no mapa
 map.on('draw:created', function (event) {
     const layer = event.layer;
-    drawnItems.addLayer(layer); // adiciona no grupo
-    
-    // Para posicionar o popup no centro da forma desenhada
-    const latlng = layer.getBounds ? layer.getBounds().getCenter() : layer.getLatLng();
+    drawnItems.addLayer(layer); // Adiciona no grupo
 
-    // Cria o formulário para descrição e fotos
-    const formHtml = `
-        <form id="shapeInfoForm">
-            <label for="shapeDescription">Descrição:</label>
-            <textarea id="shapeDescription" name="description"></textarea><br><br>
-            <label for="shapePhotos">Adicionar foto:</label>
-            <input type="file" id="shapePhotos" name="photos" multiple><br><br>
-            <button type="submit">Enviar</button>
-        </form>
-    `;
+    // Posiciona o popup no centro da forma desenhada
+    // const latlng = layer.getBounds ? layer.getBounds().getCenter() : layer.getLatLng();
 
-    const popup = L.popup()
-        .setLatLng(latlng)
-        .setContent(formHtml)
-        .openOn(map);
-
-    // Quando o enviar o formulário: 
-    document.getElementById("shapeInfoForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const description = document.getElementById("shapeDescription").value;
-        const photos = document.getElementById("shapePhotos").files;
-
-        let photoNames = "";
-        for (let i = 0; i < photos.length; i++) {
-            photoNames += photos[i].name + ", ";
-        }
-        photoNames = photoNames.slice(0, -2); // remove última vírgula
-
-        // Associa popup à forma com a descrição e fotos
-        layer.bindPopup("Descrição: " + description + "<br>Fotos: " + (photoNames || "Nenhuma")).openPopup();
-
-        // Convertendo para GeoJSON (ainda continua sendo JSON, porém apenas uma estrutura combinada). Precisa de biblioteca para manipular
-        const geojson = layer.toGeoJSON();
-        geojson.properties = {
-            descricao: description,
-            tipo: event.layerType,
-            fotos: []
-        };
-
-        // Prepara os dados para o envio com formData
-        const formData = new FormData();
-        formData.append("geojson", JSON.stringify(geojson));
-        for (let i = 0; i < photos.length; i++) {
-            formData.append("fotos[]", photos[i]);
-        }
-
-        // Envia ao backend :)
-        fetch("/api/salvar-diario", {
-            method: "POST",
-            body: formData
-        })
-            .then(res => res.json())
-            .then(data => console.log("Salvo!", data))
-            .catch(err => console.error("Erro ao salvar:", err));
-
-        map.closePopup();
-    });
+    // Apenas mostra popup pedindo para clicar no botão salvar depois
+    // const popup = L.popup()
+       //  .setLatLng(latlng)
+        // .openOn(map);
 });
+
 
 map.on('draw:edited', function (e) {
     const layers = e.layers;
@@ -241,4 +188,57 @@ map.on('draw:deleted', function (e) {
     });
 });
 
-document.getElementById('btnSalvarDistancias').addEventListener('click', processarDistanciasEDesenharGrafico);
+function getTipoDaLayer(layer) {
+  if (layer instanceof L.Marker) return "marker";
+  if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) return "polyline";
+  if (layer instanceof L.Polygon) return "polygon";
+  if (layer instanceof L.Circle) return "circle";
+  if (layer instanceof L.Rectangle) return "rectangle";
+  return "unknown";
+}
+
+document.getElementById("btnSalvarFerramentas").addEventListener("click", async function(e) {
+  e.preventDefault();
+
+  if (!drawnItems) { // Local onde está as ferramentas
+    alert("Nenhuma forma para salvar!");
+    return;
+  }
+
+  const id = sessionStorage.ID_USUARIO;
+  const layers = drawnItems.getLayers();
+
+  for (const layer of layers) {
+    const tipo = getTipoDaLayer(layer); // Função para identificar os tipos de forma.
+    const geojson = layer.toGeoJSON();
+    const descricao = prompt(`Descrição para o item do tipo ${tipo}?`) || "";
+
+    if (tipo === "polyline") {
+      // Salva a ROTA
+      await fetch("/api/salvar-rota", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          geojson,
+          distancia_km: calcularDistancia(layer),
+          descricao,
+          id
+        })
+      });
+    } else {
+      // Salva A FORMA
+      const formData = new FormData();
+      formData.append("geojson", JSON.stringify(geojson));
+      formData.append("tipo", tipo);
+      formData.append("descricao", descricao);
+      formData.append("id", id);
+
+      await fetch("/api/salvar-forma", {
+        method: "POST",
+        body: formData
+      });
+    }
+  }
+
+  alert("Todas as formas e rotas foram salvas!");
+});

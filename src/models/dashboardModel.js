@@ -1,8 +1,11 @@
 var database = require("../database/config")
 
-function exibirGraficoHeatmap () {
+function exibirGraficoHeatmap(id) {
     var instrucaoSql = `
-        SELECT id, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT f.geojson
+        FROM forma f
+        JOIN mapa m ON f.fkMapa = m.id
+        WHERE m.fkUsuario = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -10,21 +13,39 @@ function exibirGraficoHeatmap () {
 
 function exibirGraficoBarra(id) {
     var instrucaoSql = `
-        SELECT qtdRotas, qtdRetangulos, qtdCircunferencia, qtdMarcador, qtdMarcadorArea
-        FROM mapa WHERE fkUsuario = '${id}';
+        SELECT 
+            CASE 
+                WHEN distancia_km <= 1 THEN '0-1km'
+                WHEN distancia_km <= 2 THEN '1-2km'
+                WHEN distancia_km <= 3 THEN '2-3km'
+                WHEN distancia_km <= 4 THEN '3-4km'
+                WHEN distancia_km <= 5 THEN '4-5km'
+                ELSE 'Mais de 5km'
+            END AS faixa_distancia,
+            COUNT(*) AS quantidade
+        FROM rota r
+        JOIN mapa m ON r.fkMapa = m.id
+        WHERE m.fkUsuario = ${id}
+        GROUP BY faixa_distancia
+        ORDER BY faixa_distancia;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql); 
+    return database.executar(instrucaoSql);
 }
 
-function exibirGraficoLinha() {
+function exibirGraficoLinha(id) {
     var instrucaoSql = `
-        SELECT id, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT DATE(r.criado_em) AS data, COUNT(*) AS total_rotas
+        FROM rota r
+        JOIN mapa m ON r.fkMapa = m.id
+        WHERE m.fkUsuario = ${id}
+        GROUP BY DATE(r.criado_em)
+        ORDER BY DATE(r.criado_em);
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 
-module.exports = { exibirGraficoHeatmap, exibirGraficoBarra, exibirGraficoLinha};
+module.exports = { exibirGraficoHeatmap, exibirGraficoBarra, exibirGraficoLinha };
 
