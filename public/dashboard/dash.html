@@ -28,13 +28,13 @@
     <div class="graficos">
         <div class="grafico-container">
             <div class="kpi">
-                <span>🌍 Total de rotas: <strong>26</strong></span>
+                <span>🌍 Total de rotas: <strong></strong></span>
             </div>
             <canvas id="myChart"></canvas>
         </div>
         <div class="grafico-container">
             <div class="kpi">
-                <span>📍 Ferramenta Mais Usada: <strong>Retângulo</strong></span>
+                <span>📍 Ferramenta Mais Usada: <strong></strong></span>
             </div>
             <canvas id="myChart2"></canvas>
         </div>
@@ -230,11 +230,6 @@
         }
 
         function updateHeatmap() {
-            const stored = JSON.parse(localStorage.getItem('userActivityByDate'));
-            heatmapData.forEach(d => {
-                const key = formatDate(d.date);
-                d.value = stored[key] || 0;
-            });
 
             g.selectAll("rect.day")
                 .data(heatmapData, d => formatDate(d.date))
@@ -274,78 +269,11 @@
         document.body.classList.add('loaded');
     });
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
-
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
-
-    function alterarTitulo(id) {
-        var tituloAquario = document.getElementById(`tituloAquario${id}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == id).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
-
-    function exibirAquario(id) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != id) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${id}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${id}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
+    // indow.onload = exibirAquariosDoUsuario();
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez

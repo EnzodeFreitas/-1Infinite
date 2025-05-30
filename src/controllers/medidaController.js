@@ -6,7 +6,7 @@ function buscarRotasPorIdUsuario(req, res) {
 
     console.log(`Obtendo rotas do Usuário.`);
 
-    medidaModel.buscarRotasPorIdUsuario(id, ).then(function (resultado) {
+    medidaModel.buscarRotasPorIdUsuario(id).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -25,7 +25,7 @@ function buscarFormasPorIdUsuario(req, res) {
 
     console.log(`Obtendo formas do Usuário.`);
 
-    medidaModel.buscarFormasPorIdUsuario(id, ).then(function (resultado) {
+    medidaModel.buscarFormasPorIdUsuario(id).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

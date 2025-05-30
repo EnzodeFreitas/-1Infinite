@@ -6,9 +6,12 @@ function validarSessao() {
     var b_usuario = document.getElementById("b_usuario");
 
     if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
+        b_usuario.innerHTML = `Bem-vindo, ${nome}`;
+        b_usuario.removeAttribute("href")
+        mensagemBemVindo.innerHTML = `Seja bem-vindo ${nome}`
     } else {
-        window.location = "../login.html";
+        mapa.style.display="none";
+        chat.style.display="none";
     }
 }
 

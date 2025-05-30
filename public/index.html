@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="css/locomotive-scroll.css">
     <!-- Bibliteca particle.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Validar Sessão -->
+     <script src="./js/sessao.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="page-fade-in">
+<body class="page-fade-in" onload="validarSessao()">
     <!-- Partículas por toda a page -->
     <div id="particles-js"></div>
     <!-- HEADER -->
@@ -27,13 +29,13 @@
 
             <ul class="menu">
                 <li class="menu-item"><a href="">Família -1Infinite</a></li>
-                <li class="menu-item"><a href="map.html">Diário de bordo</a></li>
-                <li class="menu-item"> <a href="chat.html">Chat</a></li>
+                <li class="menu-item"><a href="map.html" id="mapa">Diário de bordo</a></li>
+                <li class="menu-item"> <a href="chat.html" id="chat">Chat</a></li>
                 <li class="menu-item"> <a href="jornada.html">Jornada</a></li>
             </ul>
 
             <div class="right-content">
-                <a href="login.html" class="nav-btn">Entrar</a>
+                <a href="login.html" class="nav-btn" id="b_usuario">Entrar</a>
                 <div id="bx bx-menu" id="menu-icon"></div>
             </div>
         </header>
