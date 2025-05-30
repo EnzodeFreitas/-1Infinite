@@ -12,7 +12,7 @@ var map = L.map('map', { // "L" - representa todo o objeto Leaflet. Ponto de ace
         [90, 180]  // Limites geográficos superior (latitude: norte, longitude: leste)
     ],
     zoomControl: true  // Botões de zoom + e -
-    
+
 });
 
 map.whenReady(() => {
@@ -151,8 +151,8 @@ map.on('draw:created', function (event) {
 
     // Apenas mostra popup pedindo para clicar no botão salvar depois
     // const popup = L.popup()
-       //  .setLatLng(latlng)
-        // .openOn(map);
+    //  .setLatLng(latlng)
+    // .openOn(map);
 });
 
 
@@ -161,14 +161,14 @@ map.on('draw:edited', function (e) {
     layers.eachLayer(function (layer) {
         const geojson = layer.toGeoJSON();
         // ENVIA AO BACK
-        fetch('/api/atualizar-diario', {
+        fetch('/atualizar-diario', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(geojson)
         })
-        .then(res => res.json())
-        .then(data => console.log('Atualizado!', data))
-        .catch(err => console.error('Erro ao atualizar:', err));
+            .then(res => res.json())
+            .then(data => console.log('Atualizado!', data))
+            .catch(err => console.error('Erro ao atualizar:', err));
     });
 });
 
@@ -177,68 +177,78 @@ map.on('draw:deleted', function (e) {
     layers.eachLayer(function (layer) {
         const geojson = layer.toGeoJSON();
         // ENVIA AO BACKEND
-        fetch('/api/excluir-diario', {
+        fetch('/excluir-diario', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(geojson)
         })
-        .then(res => res.json())
-        .then(data => console.log('Excluído!', data))
-        .catch(err => console.error('Erro ao excluir:', err));
+            .then(res => res.json())
+            .then(data => console.log('Excluído!', data))
+            .catch(err => console.error('Erro ao excluir:', err));
     });
 });
 
 function getTipoDaLayer(layer) {
-  if (layer instanceof L.Marker) return "marker";
-  if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) return "polyline";
-  if (layer instanceof L.Polygon) return "polygon";
-  if (layer instanceof L.Circle) return "circle";
-  if (layer instanceof L.Rectangle) return "rectangle";
-  return "unknown";
+    if (layer instanceof L.Marker) return "marker";
+    if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) return "polyline";
+    if (layer instanceof L.Polygon) return "polygon";
+    if (layer instanceof L.Circle) return "circle";
+    if (layer instanceof L.Rectangle) return "rectangle";
+    return "unknown";
 }
 
-document.getElementById("btnSalvarFerramentas").addEventListener("click", async function(e) {
-  e.preventDefault();
+document.getElementById("btnSalvarFerramentas").addEventListener("click", async function (e) {
+    e.preventDefault();
 
-  if (!drawnItems) { // Local onde está as ferramentas
-    alert("Nenhuma forma para salvar!");
-    return;
-  }
-
-  const id = sessionStorage.ID_USUARIO;
-  const layers = drawnItems.getLayers();
-
-  for (const layer of layers) {
-    const tipo = getTipoDaLayer(layer); // Função para identificar os tipos de forma.
-    const geojson = layer.toGeoJSON();
-    const descricao = prompt(`Descrição para o item do tipo ${tipo}?`) || "";
-
-    if (tipo === "polyline") {
-      // Salva a ROTA
-      await fetch("/api/salvar-rota", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          geojson,
-          distancia_km: calcularDistancia(layer),
-          descricao,
-          id
-        })
-      });
-    } else {
-      // Salva A FORMA
-      const formData = new FormData();
-      formData.append("geojson", JSON.stringify(geojson));
-      formData.append("tipo", tipo);
-      formData.append("descricao", descricao);
-      formData.append("id", id);
-
-      await fetch("/api/salvar-forma", {
-        method: "POST",
-        body: formData
-      });
+    if (!drawnItems) { // Local onde está as ferramentas
+        alert("Nenhuma forma para salvar!");
+        return;
     }
-  }
 
-  alert("Todas as formas e rotas foram salvas!");
+    const id = sessionStorage.ID_USUARIO;
+    const layers = drawnItems.getLayers();
+
+    for (const layer of layers) {
+        const tipo = getTipoDaLayer(layer); // Função para identificar os tipos de forma.
+        const geojson = layer.toGeoJSON();
+        const descricao = prompt(`Descrição para o item do tipo ${tipo}?`) || "";
+
+        if (tipo === "polyline") {
+            // Salva a ROTA
+            console.log("Enviando dados:", {
+                geojson,
+                tipo,
+                descricao,
+                id
+            });
+            await fetch("/dashboard/salvar-rota", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                body: JSON.stringify({
+                    geojson,
+                    distancia_km: calcularDistancia(layer),
+                    descricao,
+                    id
+                })
+            });
+        } else {
+            // Salva A FORMA
+            await fetch("/dashboard/salvar-forma", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    geojson,
+                    tipo,
+                    descricao,
+                    id
+                })
+            });
+        }
+    }
+
+    alert("Todas as formas e rotas foram salvas!");
 });

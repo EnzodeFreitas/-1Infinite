@@ -1,39 +1,31 @@
 CREATE DATABASE infinite;
 USE infinite;
 
-CREATE TABLE IF NOT EXISTS usuario (
+CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     senha VARCHAR(45) NOT NULL, 
     email VARCHAR(50) UNIQUE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS mapa (
+CREATE TABLE rota (
     id INT PRIMARY KEY AUTO_INCREMENT,
     fkUsuario INT NOT NULL,
-    nome VARCHAR(50) DEFAULT 'Mapa do Usuário',
-    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fkUsuario) REFERENCES usuario(id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS rota (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    fkMapa INT NOT NULL,
     geojson JSON NOT NULL,
     distancia_km FLOAT,
     descricao TEXT,
     criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fkMapa) REFERENCES mapa(id) ON DELETE CASCADE
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(id)
 );
 
-CREATE TABLE IF NOT EXISTS forma (
+CREATE TABLE forma (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fkMapa INT NOT NULL,
+    fkUsuario INT NOT NULL,
     tipo ENUM('polygon', 'circle', 'rectangle', 'marker') NOT NULL,
     geojson JSON NOT NULL,
     descricao TEXT,
     criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fkMapa) REFERENCES mapa(id) ON DELETE CASCADE
+     FOREIGN KEY (fkUsuario) REFERENCES usuario(id)
 );
 
 CREATE TABLE grupo (
