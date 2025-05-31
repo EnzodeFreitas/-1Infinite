@@ -15,4 +15,8 @@ router.get("/formas/por-dia/:id", function (req, res) {
     medidaController.buscarFormasPorDia(req, res);
 });
 
+// router.get("/formas-e-rotas/:id", function (req, res) {
+//     medidaController.buscarFormasERotasPorUsuario(req, res);
+// });
+
 module.exports = router;

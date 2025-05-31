@@ -55,8 +55,31 @@ function buscarFormasPorDia(req, res) {
     });
 }
 
+// function buscarFormasERotasPorUsuario(req, res) {
+//     var id = req.params.id;
+
+//     console.log(`Obtendo formas e rotas do usuário.`);
+
+//     // Promisse.all executa múltiplas promessas em paralelo e espera todas elas serem resolvidas antes de continuar.
+//     Promise.all([
+//         medidaModel.buscarFormasPorIdUsuario(id),
+//         medidaModel.buscarRotasPorIdUsuario(id)
+//     ])
+//     .then(function ([formas, rotas]) {
+//         res.status(200).json({
+//             formas,
+//             rotas
+//         });
+//     })
+//     .catch(function (erro) {
+//         console.log("Erro ao buscar formas e rotas:", erro.sqlMessage || erro);
+//         res.status(500).json({ erro: "Erro ao buscar formas e rotas." });
+//     });
+// }
+
 module.exports = {
     buscarRotasPorIdUsuario,
     buscarFormasPorIdUsuario,
-    buscarFormasPorDia
+    buscarFormasPorDia,
+    // buscarFormasERotasPorUsuario
 }

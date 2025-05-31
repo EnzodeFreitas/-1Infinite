@@ -15,8 +15,6 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- CSS principal -->
     <link rel="stylesheet" href="./css/map.css">
-    <style>
-    </style>
 </head>
 
 <body class="page-fade-in">
@@ -37,14 +35,14 @@
                     <li class="menu-item"> <a href="chat.html">Chat</a></li>
                     <li class="menu-item"> <a href="jornada.html">Jornada</a></li>
                 </ul>
-                
+
                 <div class="right-content">
                     <a style="cursor: pointer;" class="nav-btn" id="btnSalvarFerramentas">Salvar</a>
                     <div id="bx bx-menu" id="menu-icon"></div>
                 </div>
 
             </header>
-            
+
 
             <!-- SIDE -->
             <div class="side">
@@ -61,6 +59,53 @@
                 </div>
                 <div class="content" id="map"></div> <!-- O mapa aparece aqui -->
             </section>
+
+            <!-- Botão flutuante de ajuda -->
+            <button id="ajudaBtn" title="Ajuda">?</button>
+
+            <!-- Caixa de ajuda oculta -->
+            <div id="caixaAjuda">
+                <div id="conteudoAjuda">
+                    <span id="fecharAjuda">&times;</span>
+                    <h3>Como usar o mapa interativo</h3>
+                    <p>Este mapa permite que você explore, crie e salve informações geográficas com facilidade. Veja
+                        como usar:</p> <br>
+
+                    <h4>📍 Localização e Navegação</h4>
+                    <ul>
+                        <li>Ao abrir o mapa, ele tenta identificar sua localização e exibe um marcador onde você está.
+                        </li>
+                        <li>Use os botões de zoom (+ e -) no canto para aproximar ou afastar o mapa.</li>
+                        <li>Você também pode arrastar o mapa com o mouse para explorar outras regiões.</li>
+                    </ul>
+                    <br>
+                    <h4🛠️><u>Ferramentas de Desenho</u></h4>
+                        <ul>
+                            <li>Clique nos ícones do canto superior esquerdo do mapa para desenhar formas:</li>
+                            <li>📌 Marcador: adiciona um ponto fixo.</li>
+                            <li>➖ Linha (rota): desenha caminhos entre pontos, ideal para calcular distâncias.</li>
+                            <li>🔲 Retângulo, 🔶 Polígono, 🔵 Círculo: formas geométricas para marcações de área.</li>
+                            <li>🖊️ Após desenhar, clique em uma forma para editar ou mover.</li> <br>
+                        </ul>
+
+                        <h4>📐 Distância e Salvamento</h4>
+                        <ul>
+                            <li>Rotas (linhas) têm a distância total calculada automaticamente em quilômetros.</li>
+                            <li>Clique no botão "Salvar" para guardar todas as formas e rotas que você desenhou.</li>
+                            <li>Será pedido que você escreva uma breve descrição para cada item.</li>
+                        </ul>
+
+                        <h4>💡 Dicas</h4>
+                        <ul>
+                            <li>Clique no mapa para ver as coordenadas exatas do ponto.</li>
+                            <li>Você pode desenhar várias formas diferentes no mesmo mapa.</li>
+                            <li>Os dados salvos ficam vinculados ao seu usuário.</li> <br>
+                        </ul>
+
+                        <p><strong>Divirta-se explorando e registrando seus dados geográficos!</strong></p>
+                </div>
+            </div>
+
         </main>
         <!-- JS Leaflet -->
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -74,7 +119,9 @@
         <script src="js/hideMenu.js"></script>
         <!-- JS Menu -->
         <script src="js/searchLocal.js"></script>
-        
+        <!-- JS Help -->
+        <script src="js/help.js"></script>
+
 </body>
 
 </html>
@@ -85,5 +132,4 @@
         document.body.classList.add('loaded');
     });
 
-    
 </script>
