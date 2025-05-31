@@ -10,7 +10,7 @@ function buscarRotasPorIdUsuario(req, res) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(200).json([])
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -38,7 +38,25 @@ function buscarFormasPorIdUsuario(req, res) {
     });
 }
 
+function buscarFormasPorDia(req, res) {
+    var id = req.params.id;
+    console.log(`Obtendo formas por dia do usuário.`);
+
+    medidaModel.buscarFormasPorDia(id).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Erro ao buscar formas por dia:", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarRotasPorIdUsuario,
-    buscarFormasPorIdUsuario
+    buscarFormasPorIdUsuario,
+    buscarFormasPorDia
 }

@@ -157,7 +157,7 @@ header.header {
 canvas {
     height: 40vh;
     width: 100%;
-    max-width: 500px;
+    max-width: 100%px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 10px;
