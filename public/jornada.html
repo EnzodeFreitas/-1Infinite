@@ -9,9 +9,10 @@
   <link rel="stylesheet" href="css/locomotive-scroll.css" />
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <link rel="stylesheet" href="css/jornada.css" />
+  <script src="./js/sessao.js"></script>
 </head>
 
-<body class="page-fade-in">
+<body class="page-fade-in" onload="validarSessao()">
   <!-- Partículas -->
   <div id="particles-js"></div>
 
@@ -22,8 +23,8 @@
       </div>
       <ul class="menu">
         <li class="menu-item"><a href="index.html">Família -1Infinite</a></li>
-        <li class="menu-item"><a href="map.html">Diário de bordo</a></li>
-        <li class="menu-item"><a href="chat.html">Chat</a></li>
+        <li class="menu-item"><a href="map.html" id="mapa">Diário de bordo</a></li>
+        <li class="menu-item"><a href="chat.html" id="chat">Chat</a></li>
         <li class="menu-item"><a href="jornada.html">Jornada</a></li>
       </ul>
       <div class="right-content">

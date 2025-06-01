@@ -77,7 +77,6 @@ const processMessage = ({ data }) => { // Desestruturação para pegar o valor d
     chatMessages.appendChild(message) // Filho da section
     scrollScreen()
 
-    
 }
 
 
@@ -88,7 +87,7 @@ const handleLogin = (event) => {
     user.name = loginInput.value
     user.color = getRandomColor()
 
-    login.style.display = "none" // AQUI VAI A APIIIIIIII
+    login.style.display = "none"
     chat.style.display = "flex"
 
     websocket = new WebSocket("ws://localhost:8080") // Cria conexão com o servidor
