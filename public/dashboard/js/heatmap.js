@@ -1,11 +1,11 @@
 const year = new Date().getFullYear();
-const width = 1000, height = 150, cellSize = 17;
+const width = 1000, height = 180, cellSize = 17;
 const svg = d3.select("#heatmap").append("svg")
     .attr("width", width)
     .attr("height", height);
 const g = svg.append("g").attr("transform", "translate(40,20)");
 const color = d3.scaleQuantize()
-    .domain([0, 10]) // Ajuste esse domínio depois que tiver dados reais
+    .domain([1, 3, 5, 8]) // Range de cores
     .range(["#050f1a", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]);
 const dayLabels = ["D", "S", "T", "Q", "Q", "S", "S"];
 const tooltip = d3.select("body").append("div")
@@ -39,6 +39,43 @@ function formatDate(date) {
     return `${yyyy}-${mm}-${dd}`;
 }
 
+function desenharLegenda() {
+    const legendData = [
+        { label: "1–2", color: "#c6e48b" },
+        { label: "3–4", color: "#7bc96f" },
+        { label: "5–7", color: "#239a3b" },
+        { label: "8+", color: "#196127" }
+    ];
+
+    const legendItemWidth = 70;
+    const totalLegendWidth = legendData.length * legendItemWidth;
+    const startX = (width - totalLegendWidth) / 2;
+
+    const legend = svg.append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(${startX}, ${height - 40})`);
+
+    legend.selectAll("rect")
+        .data(legendData)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * legendItemWidth)
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("fill", d => d.color);
+
+    legend.selectAll("text")
+        .data(legendData)
+        .enter()
+        .append("text")
+        .attr("x", (d, i) => i * legendItemWidth + 25)
+        .attr("y", 15)
+        .text(d => d.label)
+        .style("font-size", "12px")
+        .style("alignment-baseline", "middle")
+        .style("fill", "#767676");
+}
+
 function updateHeatmap() {
     g.selectAll("rect.day")
         .data(heatmapData, d => formatDate(d.date))
@@ -62,6 +99,8 @@ function updateHeatmap() {
             update => update.transition().duration(300).attr("fill", d => color(d.value))
         );
 }
+
+
 
 // Coleta dos dados
 function carregarDadosHeatmap() {
@@ -115,4 +154,5 @@ function carregarDadosHeatmap() {
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarDadosHeatmap();
+    desenharLegenda()
 });

@@ -121,7 +121,7 @@ map.on('click', function (e) {
 map.on('draw:created', function (event) {
     const layer = event.layer;
     drawnItems.addLayer(layer); // Adiciona no grupo
-    novasFormas.push(layer);
+    novasFormas.push(layer); // Adiciona ao vetor de formas novas
 });
 
 function getTipoDaLayer(layer) {

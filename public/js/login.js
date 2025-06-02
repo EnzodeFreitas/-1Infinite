@@ -36,8 +36,6 @@ btn_cadastro.addEventListener('click', () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // crie um atributo que recebe o valor recuperado aqui
-      // Agora vá para o arquivo routes/usuario.js
       nomeServer: nome,
       senhaServer: senha,
       emailServer: email

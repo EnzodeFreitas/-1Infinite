@@ -1,6 +1,6 @@
     function buscarLocalizacao() {
     const input = document.getElementById("searchInput").value.trim();  /* 
-    Remove os espaços antecedentes e posteriores do conteúdo digitado par anão haver confusão. 
+    Remove os espaços antecedentes e posteriores do conteúdo digitado para não haver confusão. 
     Por exemplo " -23.558082, -46.661727  ".trim() = "-23.558082, -46.661727", 
     "   Rua Haddock Lobo 595 (São Paulo - Sp), São Paulo, SP, 01414-905   " =
     "Rua Haddock Lobo 595 (São Paulo - Sp), São Paulo, SP, 01414-905"
@@ -41,6 +41,6 @@
             .catch(error => {
                 console.error("Erro ao buscar local:", error);
                 alert("Erro na busca. Tente novamente.");
-            }); // Se ocorrer erro para chamada da API :(
+            }); 
     }
 }
